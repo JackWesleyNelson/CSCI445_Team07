@@ -1,6 +1,31 @@
 var dimension = 9;
+var maxBombs = 10;
+function chooseDifficulty(difficulty) {
+	switch(difficulty) {
+		case "easy":
+			dimension = 9;
+			maxBombs = 10;
+			drawGrid();
+			break;
+		case "intermediate":
+			dimension = 16;
+			maxBombs = 40;
+			drawGrid();
+			break;
+		case "expert":
+			dimension = 22;
+			maxBombs = 99;
+			drawGrid();
+			break;
+		default:
+			dimension = 9;
+			maxBombs = 10;
+			drawGrid();
+			break;
+	}
+}
 var grid = new Array(dimension);
-var maxBombs = 15;
+
 var imgs = new Array(11)
 var flag = false;
 
@@ -96,7 +121,7 @@ function startgame() {
 }
 
 function createTable() {
-	var s = "<tr><td colspan = 3><button type=\"button\" id =\"flagbutton\">Flag</button></td><td colspan = 3></td><td colspan = 3></td></tr>";
+	var s = "<tr><td colspan = "+ Math.round(dimension/3) + "><button type=\"button\" id =\"flagbutton\">Flag</button></td><td colspan = " + Math.round(dimension/3) + "></td><td colspan = " + Math.round(dimension/3) + "></td></tr>";
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
@@ -113,5 +138,5 @@ document.getElementById('GameBoard').innerHTML = createTable();
 setUp();
 drawGrid();
 window.onload = function() {
-    drawGrid();
+    drawGrid;
 }
