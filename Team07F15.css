@@ -1,0 +1,64 @@
+html {
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	font-size: 15pt;
+	background: -webkit-linear-gradient(white, #2F4463); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #2F4463); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #2F4463); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #2F4463); /* Standard syntax */
+}
+h1 {
+	color: #2F4463;
+	font-size: 35pt;
+	text-align: center;
+	margin-top: 10px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.logo {
+	width: 25%;
+	margin-left: 37.5%;
+} 
+.container {
+	width: 66%;
+	margin: auto;
+	padding: 20px 40px 100px 40px;
+}
+.title {
+	width: 100%; 
+	background-color: #2F4463;
+	padding: 5px 5px 5px 5px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border-radius: 5px 50px 50px 5px;
+}
+.title:hover {
+	animation-name: width;
+    animation-duration: 1s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+}
+.authors {
+	display: inline;
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+.authorTitle {
+	text-align: center;
+}
+.author {
+	width: 33%;
+	display: inline;
+	float: left;
+}
+
+@keyframes width {
+    from {
+     	width: 100%;  
+    }
+    to {
+     	width: 70%;
+    }
+}

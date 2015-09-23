@@ -3,14 +3,39 @@
 <head>
 	<title>Team07F15 Minesweeper</title>
 	<meta charset="UTF-8">
-	
+	<link rel = "stylesheet" type = "text/css" href = "Team07F15.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>Minesweeper</h1>
-	<div>
+	<div class="container">
+		<img class="logo" src="imgs/mines_logo.png">
+		<h1>Minesweeper</h1>
 		<table id="GameBoard"></table>
+		<div class="howToPlay">
+			<div class="title">How to play</div>
+			<div class="rules">
+				<ul>
+					<li>Uncover a mine, and the game ends.</li>
+					<li>Uncover an empty square, and you keep playing.</li>
+					<li>Uncover a number, and it tells you how many mines lay hidden in the eight surrounding squares—information you use to deduce which nearby squares are safe to click.</li>
+			</div>
+		</div>
+		<div class="hintsAndTips">
+			<div class="title">Hints and Tips</div>
+			<div class="tips">
+				<ul>
+					<li><b>Mark the mines. </b>If you suspect a square conceals a mine, right-click it. This puts a flag on the square. (If you're not sure, right-click again to make it a question mark.)</li>
+					<li><b>Study the patterns. </b>If three squares in a row display 2-3-2, then you know three mines are probably lined up beside that row. If a square says 8, every surrounding square is mined.</li>
+					<li><b>Explore the unexplored. </b>Not sure where to click next? Try clearing some unexplored territory. You're better off clicking in the middle of unmarked squares than in an area you suspect is mined.</li>
+			</div>
+		</div>
+		<div class="authors">
+			<div class="authorTitle">This game is brought to you by: </div>
+			<div class="author">Author 1</div>
+			<div class="author">Author 2</div>
+			<div class="author">Author 3</div>
+		</div>
 	</div>
 </body>
 <script src = "Team07F15.js"></script>
-<link rel = "stylesheet" type = "text/css" href = "Team07F15.css"/>
 </html>
