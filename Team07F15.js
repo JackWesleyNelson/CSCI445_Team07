@@ -2,6 +2,7 @@ var dimension = 9;
 var grid = new Array(dimension);
 var maxBombs = 15;
 var imgs = new Array(11)
+var flag = false;
 
 function createImages() {
     for(var i =0; i<11; i++) {
@@ -15,10 +16,17 @@ function setUp() {
     for(var i=0; i<dimension; i++)
             for(var j=0 ; j<dimension; j++) {
                 document.getElementById("canvas"+i+"_"+j).addEventListener('click', function(event) {
-                    this.attributes.clicked = "true";
-                    drawGrid();
+                    if(!flag) {
+                        this.attributes.clicked = "true";
+                        drawGrid();
+                    }
+                    else {
+                        this.attributes.clicked = "false";
+                        drawGrid();
+                    }
                 }, false);
             }
+    document.getElementById("flagbutton").onclick = function() { flag = !flag; };
 }
 
 function drawGrid() {
@@ -88,7 +96,7 @@ function startgame() {
 }
 
 function createTable() {
-	var s = "";
+	var s = "<tr><td colspan = 3><button type=\"button\" id =\"flagbutton\">Flag</button></td><td colspan = 3></td><td colspan = 3></td></tr>";
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
