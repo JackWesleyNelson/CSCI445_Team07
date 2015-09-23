@@ -22,16 +22,16 @@ table {
 td {
 	height: 50px;
 	width: 50px;
-	border: 1px solid black;
+	border: 5px solid #A8A8A8;
+	background-color: #A8A8A8;
 	
+}
+tr{
+	height:50px;
 }
 img {
 	width: 100%;
 	height: 100%;
-}
-td {
-	height: 50px;
-	width: 50px;
 }
 canvas {
 	padding: 0px;
@@ -39,6 +39,7 @@ canvas {
 	width: 50px;
 	height: 50px;
 	display: block;
+	border-radius: 5px;
 }
 ul {
 	line-height: 30px;

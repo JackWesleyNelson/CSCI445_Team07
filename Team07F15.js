@@ -1,8 +1,33 @@
-var dimension;
-var grid;
-var maxBombs, flags, bombsFlagged;
-var imgs;
-var flag;
+var dimension = 9;
+var maxBombs = 10;
+function chooseDifficulty(difficulty) {
+	switch(difficulty) {
+		case "easy":
+			dimension = 9;
+			maxBombs = 10;
+			drawGrid();
+			break;
+		case "intermediate":
+			dimension = 16;
+			maxBombs = 40;
+			drawGrid();
+			break;
+		case "expert":
+			dimension = 22;
+			maxBombs = 99;
+			drawGrid();
+			break;
+		default:
+			dimension = 9;
+			maxBombs = 10;
+			drawGrid();
+			break;
+	}
+}
+var grid = new Array(dimension);
+
+var imgs = new Array(11)
+var flag = false;
 
 function createImages() {
     for(var i =0; i<11; i++) {
@@ -100,9 +125,9 @@ function startgame() {
 
 function createTable() {
 	var s = "<tr>"
-    s += "<td colspan = 3><button type=\"button\" id =\"flagbutton\">Flag</button></td>";
-    s += "<td colspan = 3><button type=\"button\" id =\"resetbutton\">Reset</button></td>";
-    s += "<td id = \"gameMessage\"colspan = 3>"+(maxBombs - flags)+"</td></tr>";
+    s += "<td colspan = "+ Math.round(dimension/3) + "><button type=\"button\" id =\"flagbutton\">Flag</button></td>";
+    s += "<td colspan = "+ Math.round(dimension/3) + "><button type=\"button\" id =\"resetbutton\">Reset</button></td>";
+    s += "<td id = \"gameMessage\"colspan = "+ Math.round(dimension/3) + ">"+(maxBombs - flags)+"</td></tr>";
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
@@ -114,12 +139,7 @@ function createTable() {
 }
 
 function newGame() {
-    dimension = 9;
-    grid = new Array(dimension);
-    maxBombs = 15;
-    flags = 0; 
-    bombsFlagged = 0;
-    imgs = new Array(11);
+    flags = 0;
     flag = false;
     createImages();
     startgame();
@@ -131,5 +151,5 @@ function newGame() {
 
 newGame();
 window.onload = function() {
-    drawGrid();
+    drawGrid;
 }
