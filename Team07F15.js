@@ -1,6 +1,39 @@
 var dimension = 9;
 var grid = new Array(dimension);
-var maxBombs = 10;
+var maxBombs = 15;
+var imgs = new Array(11)
+
+function createImages() {
+    for(var i =0; i<11; i++) {
+        var img = document.createElement("img");
+        img.src = "image"+i+".png";
+        imgs[i] = (img);
+    }
+}
+
+function setUp() {
+    for(var i=0; i<dimension; i++)
+            for(var j=0 ; j<dimension; j++) {
+                document.getElementById("canvas"+i+"_"+j).addEventListener('click', function(event) {
+                    this.attributes.clicked = "true";
+                    drawGrid();
+                }, false);
+            }
+}
+
+function drawGrid() {
+    var img2 = document.createElement("img");
+    img2.src = "image10.png";
+    for(var i=0;i<dimension;i++)
+        for(var j=0;j<dimension;j++) {
+            if(document.getElementById("canvas"+i+"_"+j).attributes.clicked == "true") {
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],10,10);
+            }
+            else {
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],10,10);
+            }
+        }
+}
 
 function check(row, col) {
     var data = grid[row][col];
@@ -59,13 +92,18 @@ function createTable() {
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
-			s += "<td id = \"block_" + i +"_" + j + "\"></td>"
+			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"200\" height=\"100\" clicked = \"false\"></canvas></td>"
 		}
 		s += "</tr>";
 	}
 	return s;
 }
-
-document.getElementById('GameBoard').innerHTML = createTable();
+createImages();
 startgame();
 calcNumbers();
+document.getElementById('GameBoard').innerHTML = createTable();
+setUp();
+drawGrid();
+window.onload = function() {
+    drawGrid();
+}
