@@ -8,6 +8,9 @@ html {
     background: -moz-linear-gradient(white, #2F4463); /* For Firefox 3.6 to 15 */
     background: linear-gradient(white, #2F4463); /* Standard syntax */
 }
+ul {
+	line-height: 30px;
+}
 h1 {
 	color: #2F4463;
 	font-size: 35pt;
@@ -28,10 +31,10 @@ h1 {
 .title {
 	width: 100%; 
 	background-color: #2F4463;
-	padding: 5px 5px 5px 5px;
+	padding: 5px 15px 5px 15px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	border-radius: 5px 50px 50px 5px;
+	border-radius: 50px 50px 50px 50px;
 }
 .title:hover {
 	animation-name: width;
@@ -52,13 +55,28 @@ h1 {
 	width: 33%;
 	display: inline;
 	float: left;
+	margin-top: 10px;
 }
-
+.author:hover {
+	transition: flip 1s;
+	animation-name: flip;
+    animation-duration: 1s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+}
 @keyframes width {
     from {
      	width: 100%;  
     }
     to {
      	width: 70%;
+    }
+}
+@keyframes flip {
+    from {
+     	transform: rotateY(0deg);  
+    }
+    to {
+     	transform: rotateY(150deg);
     }
 }
