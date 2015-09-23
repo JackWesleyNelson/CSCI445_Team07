@@ -1,7 +1,7 @@
 var dimension = 9;
 var grid = new Array(dimension);
 var maxBombs = 15;
-var imgs = new Array(11)
+var imgs = new Array(11);
 var flag = false;
 
 function createImages() {
