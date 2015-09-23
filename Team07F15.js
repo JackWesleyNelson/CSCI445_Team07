@@ -100,7 +100,7 @@ function createTable() {
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
-			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"200\" height=\"100\" clicked = \"false\"></canvas></td>"
+			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"50\" height=\"50\" clicked = \"false\"></canvas></td>"
 		}
 		s += "</tr>";
 	}
