@@ -1,8 +1,8 @@
-var dimension = 9;
-var grid = new Array(dimension);
-var maxBombs = 15;
-var imgs = new Array(11);
-var flag = false;
+var dimension;
+var grid;
+var maxBombs, flags, bombsFlagged;
+var imgs;
+var flag;
 
 function createImages() {
     for(var i =0; i<11; i++) {
@@ -15,18 +15,21 @@ function createImages() {
 function setUp() {
     for(var i=0; i<dimension; i++)
             for(var j=0 ; j<dimension; j++) {
-                document.getElementById("canvas"+i+"_"+j).addEventListener('click', function(event) {
+                document.getElementById("canvas"+i+"_"+j).addEventListener('click', function(event)                     {
                     if(!flag) {
-                        this.attributes.clicked = "true";
+                        this.setAttribute("clicked", true)
                         drawGrid();
                     }
                     else {
-                        this.attributes.clicked = "false";
+                        if(this.getAttribute("clicked") == "false" && flags < maxBombs)
+                            flags++;
+                        document.getElementById('gameMessage').innerHTML = (maxBombs - flags);
                         drawGrid();
                     }
                 }, false);
             }
     document.getElementById("flagbutton").onclick = function() { flag = !flag; };
+    document.getElementById("resetbutton").onclick = function() { newGame(); };
 }
 
 function drawGrid() {
@@ -34,11 +37,11 @@ function drawGrid() {
     img2.src = "image10.png";
     for(var i=0;i<dimension;i++)
         for(var j=0;j<dimension;j++) {
-            if(document.getElementById("canvas"+i+"_"+j).attributes.clicked == "true") {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],10,10);
+            if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true") {
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],0,0, 100, 100);
             }
             else {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],10,10);
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],0,0, 100, 100);
             }
         }
 }
@@ -96,22 +99,37 @@ function startgame() {
 }
 
 function createTable() {
-	var s = "<tr><td colspan = 3><button type=\"button\" id =\"flagbutton\">Flag</button></td><td colspan = 3></td><td colspan = 3></td></tr>";
+	var s = "<tr>"
+    s += "<td colspan = 3><button type=\"button\" id =\"flagbutton\">Flag</button></td>";
+    s += "<td colspan = 3><button type=\"button\" id =\"resetbutton\">Reset</button></td>";
+    s += "<td id = \"gameMessage\"colspan = 3>"+(maxBombs - flags)+"</td></tr>";
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
-			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"50\" height=\"50\" clicked = \"false\"></canvas></td>"
+			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" clicked = false></canvas></td>"
 		}
 		s += "</tr>";
-	}
+    }
 	return s;
 }
-createImages();
-startgame();
-calcNumbers();
-document.getElementById('GameBoard').innerHTML = createTable();
-setUp();
-drawGrid();
+
+function newGame() {
+    dimension = 9;
+    grid = new Array(dimension);
+    maxBombs = 15;
+    flags = 0; 
+    bombsFlagged = 0;
+    imgs = new Array(11);
+    flag = false;
+    createImages();
+    startgame();
+    calcNumbers();
+    document.getElementById('GameBoard').innerHTML = createTable();
+    setUp();
+    drawGrid();
+}
+
+newGame();
 window.onload = function() {
     drawGrid();
 }

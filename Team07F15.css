@@ -36,6 +36,8 @@ td {
 canvas {
 	padding: 0px;
 	margin: 0px;
+	width: 50px;
+	height: 50px;
 	display: block;
 }
 ul {
