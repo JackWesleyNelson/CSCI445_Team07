@@ -35,10 +35,10 @@ function drawGrid() {
     for(var i=0;i<dimension;i++)
         for(var j=0;j<dimension;j++) {
             if(document.getElementById("canvas"+i+"_"+j).attributes.clicked == "true") {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],10,10);
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],0,0);
             }
             else {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],10,10);
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],0,0);
             }
         }
 }
@@ -100,7 +100,7 @@ function createTable() {
 	for(var i =0; i < dimension; i++) {
 		s += "<tr>";
 		for(var j = 0; j< dimension; j++) {
-			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"50\" height=\"50\" clicked = \"false\"></canvas></td>"
+			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" width=\"50px\" height=\"50px\" clicked = \"false\"></canvas></td>"
 		}
 		s += "</tr>";
 	}
