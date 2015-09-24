@@ -97,7 +97,7 @@ function drawGrid() {
                 canvas.getContext("2d").drawImage(imgs[grid[i][j]],0,0, imgs[grid[i][j]].width, imgs[grid[i][j]].height, 0, 0, width, height);
             }
             else if(document.getElementById("canvas"+i+"_"+j).getAttribute("flagged") == "true") {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[11],0,0, 100, 100);
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[11],0,0, imgs[11].width, imgs[11].height, 0, 0, width, height);
             }
             else {
                 canvas.getContext("2d").drawImage(imgs[10],0,0, imgs[10].width, imgs[10].height, 0, 0, width, height);
