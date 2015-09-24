@@ -1,5 +1,8 @@
 var dimension = 9;
 var maxBombs = 10;
+var playing = true;
+var started = false;
+
 function chooseDifficulty(difficulty) {
 	switch(difficulty) {
 		case "easy":
@@ -9,13 +12,13 @@ function chooseDifficulty(difficulty) {
 			drawGrid();
 			break;
 		case "intermediate":
-			dimension = 16;
+			dimension = 15;
 			maxBombs = 40;
 			newGame();
 			drawGrid();
 			break;
 		case "expert":
-			dimension = 22;
+			dimension = 21;
 			maxBombs = 99;
 			newGame();
 			drawGrid();
@@ -44,24 +47,38 @@ function createImages() {
 function setUp() {
     for(var i=0; i<dimension; i++)
             for(var j=0 ; j<dimension; j++) {
+				document.getElementById("canvas"+i+"_"+j).setAttribute("x", i);
+				document.getElementById("canvas"+i+"_"+j).setAttribute("y", j);
                 document.getElementById("canvas"+i+"_"+j).addEventListener('click', function(event)                     {
-                    if(!flag) {
-                        this.setAttribute("clicked", true)
-                        drawGrid();
-                    }
-                    else {
-                        if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "false"){
-							flags++;
-							this.setAttribute("flagged", "true");
-						}
-						else if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "true"){
-							flags--;
-							this.setAttribute("flagged", "false");
-						}
+					if(!started){
+						startgame(this.getAttribute("x"), this.getAttribute("y"));
 						
-                        document.getElementById('gameMessage').innerHTML = (maxBombs - flags);
-                        drawGrid();
-                    }
+						calcNumbers();
+						started = true;
+						drawGrid();
+					}
+					if(playing){
+						if(!flag) {
+							this.setAttribute("clicked", true)
+							drawGrid();
+						}
+						else {
+							if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "false"){
+								flags++;
+								this.setAttribute("flagged", "true");
+							}
+							else if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "true"){
+								flags--;
+								this.setAttribute("flagged", "false");
+							}
+							drawGrid();
+						}
+					}
+					document.getElementById('gameMessage').innerHTML = (maxBombs - flags);
+					var s = gameOver();
+					if(s != ""){
+						document.getElementById('gameMessage').innerHTML = s;
+					}
                 }, false);
             }
     document.getElementById("flagbutton").onclick = function() { flag = !flag; };
@@ -113,19 +130,21 @@ function calcNumbers() {
     }
 }
 
-function startgame() {
-    for(var i=0; i<dimension; i++) {
+function makeGrid(){
+	for(var i=0; i<dimension; i++) {
         grid[i] = new Array(dimension);
         for(var j=0 ; j<dimension; j++) {
             grid[i][j] = 0;
         }
     }
-    
+}
+
+function startgame(startRow, startCol) {
     var b = 0;
     while(b < maxBombs) {
         for(var i=0; i<dimension; i++) {
             for(var j=0 ; j<dimension; j++) {
-                if(parseInt(Math.floor(Math.random() * 10)) < 2 && grid[i][j] != dimension && b < maxBombs) {
+                if(i != startRow && j != startCol && parseInt(Math.floor(Math.random() * 10)) < 2 && grid[i][j] != dimension && b < maxBombs) {
                     grid[i][j] = 9;
                     b++;
                 }
@@ -165,12 +184,16 @@ function newGame() {
     flags = 0;
 	//set the user to not be placing a flag.
     flag = false;
+	//set the game to being played.
+	playing = true;
+	started = false;
 	//create all the needed images.
     createImages();
+	makeGrid();
 	//set up the grids bombs.
-    startgame();
+    //startgame();
 	//set up corresponding numbers for each tile.
-    calcNumbers();
+    //calcNumbers();
 	//set the html in the GameBoard table to display the relevant html.
     document.getElementById('GameBoard').innerHTML = createTable();
 	//set the click events for all the canvas', and other buttons.
@@ -180,22 +203,24 @@ function newGame() {
 }
 
 function gameOver(){
+	playing = false;
 	//set the return string to congratulate the user initially.
 	var message = "Congratulations!";
 	//iterate over the current games values.
-	for(int i = 0; i < row; i++){
-		for(int j = 0; j < col; j++){
+	for(var i = 0; i < dimension; i++){
+		for(var j = 0; j < dimension; j++){
 			//if the canvas at this location has been clicked.
 			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true"){
 				//if the user clicked a bomb, return game over message.
-				if(grid[row][col] == 9){
+				if(grid[i][j] == 9){
 					return "Game Over!";
 				}
 			}
 			//if the canvas at this location has not been clicked.
 			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "false"){
 				//if the user hasn't clicked a tile, and that tile isn't a bomb, then the game isn't over yet so return no message.
-				if(grid[row][col] != 9){
+				if(grid[i][j] != 9){
+					playing = true;
 					message = "";
 				}
 			}
