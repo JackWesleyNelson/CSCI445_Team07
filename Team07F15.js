@@ -90,14 +90,17 @@ function drawGrid() {
     img2.src = "image10.png";
     for(var i=0;i<dimension;i++)
         for(var j=0;j<dimension;j++) {
-            if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true") {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[grid[i][j]],0,0, 100, 100);
+			var canvas = document.getElementById("canvas"+i+"_"+j);
+			var width = canvas.width;
+			var height = canvas.height;
+            if(canvas.getAttribute("clicked") == "true") {
+                canvas.getContext("2d").drawImage(imgs[grid[i][j]],0,0, imgs[grid[i][j]].width, imgs[grid[i][j]].height, 0, 0, width, height);
             }
             else if(document.getElementById("canvas"+i+"_"+j).getAttribute("flagged") == "true") {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[11],0,0, 100, 100);
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[11],0,0, imgs[11].width, imgs[11].height, 0, 0, width, height);
             }
             else {
-                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[10],0,0, 100, 100);
+                canvas.getContext("2d").drawImage(imgs[10],0,0, imgs[10].width, imgs[10].height, 0, 0, width, height);
             }
         }
 }
