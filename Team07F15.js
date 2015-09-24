@@ -219,6 +219,11 @@ function gameOver(){
 			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true"){
 				//if the user clicked a bomb, return game over message.
 				if(grid[i][j] == 9){
+                    for(var i=0; i<dimension; i++)
+                        for(var j=0 ; j<dimension; j++) {
+                            document.getElementById("canvas"+i+"_"+j).setAttribute("clicked", true);
+                        }
+                    drawGrid();
 					return "Game Over!";
 				}
 			}
