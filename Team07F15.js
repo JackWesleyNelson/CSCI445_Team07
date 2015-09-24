@@ -50,8 +50,15 @@ function setUp() {
                         drawGrid();
                     }
                     else {
-                        if(this.getAttribute("clicked") == "false" && flags < maxBombs)
-                            flags++;
+                        if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "false"){
+							flags++;
+							this.setAttribute("flagged", "true");
+						}
+						else if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "true"){
+							flags--;
+							this.setAttribute("flagged", "false");
+						}
+						
                         document.getElementById('gameMessage').innerHTML = (maxBombs - flags);
                         drawGrid();
                     }
@@ -119,7 +126,7 @@ function startgame() {
         for(var i=0; i<dimension; i++) {
             for(var j=0 ; j<dimension; j++) {
                 if(parseInt(Math.floor(Math.random() * 10)) < 2 && grid[i][j] != dimension && b < maxBombs) {
-                    grid[i][j] = dimension;
+                    grid[i][j] = 9;
                     b++;
                 }
             }
@@ -127,33 +134,82 @@ function startgame() {
     }
 }
 
+
 function createTable() {
+	//open the table row
 	var s = "<tr>"
+	//create a button for the marking flags above the game grid, spanning 1/3 of the columns.
     s += "<td colspan = "+ Math.round(dimension/3) + "><button type=\"button\" id =\"flagbutton\">Flag</button></td>";
+	//create a button for resetting the game above the game grid, spanning 1/3 of the columns.
     s += "<td colspan = "+ Math.round(dimension/3) + "><button type=\"button\" id =\"resetbutton\">Reset</button></td>";
+	//display the number of bombs in the game - the number of flags the user has placed. Above the game grid, spanning 1/3 of the columns
     s += "<td id = \"gameMessage\"colspan = "+ Math.round(dimension/3) + ">"+(maxBombs - flags)+"</td></tr>";
+	//iterate over the rows
 	for(var i =0; i < dimension; i++) {
+		//open a table row
 		s += "<tr>";
+		//iterate over the columns
 		for(var j = 0; j< dimension; j++) {
-			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" clicked = false></canvas></td>"
+			//add the canvas for the current position in our table
+			s += "<td id = \"block_" + i +"_" + j + "\"><canvas id=\"canvas"+ i + "_" + j + "\" clicked = false flagged=false></canvas></td>"
 		}
+		//close off the table row
 		s += "</tr>";
     }
+	//return the generated html string.
 	return s;
 }
 
 function newGame() {
+	//reset the flags placed to 0.
     flags = 0;
+	//set the user to not be placing a flag.
     flag = false;
+	//create all the needed images.
     createImages();
+	//set up the grids bombs.
     startgame();
+	//set up corresponding numbers for each tile.
     calcNumbers();
+	//set the html in the GameBoard table to display the relevant html.
     document.getElementById('GameBoard').innerHTML = createTable();
+	//set the click events for all the canvas', and other buttons.
     setUp();
+	//call the draw functions for each of the canvas'.
     drawGrid();
 }
 
+function gameOver(){
+	//set the return string to congratulate the user initially.
+	var message = "Congratulations!";
+	//iterate over the current games values.
+	for(int i = 0; i < row; i++){
+		for(int j = 0; j < col; j++){
+			//if the canvas at this location has been clicked.
+			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true"){
+				//if the user clicked a bomb, return game over message.
+				if(grid[row][col] == 9){
+					return "Game Over!";
+				}
+			}
+			//if the canvas at this location has not been clicked.
+			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "false"){
+				//if the user hasn't clicked a tile, and that tile isn't a bomb, then the game isn't over yet so return no message.
+				if(grid[row][col] != 9){
+					message = "";
+				}
+			}
+		}
+	}
+	//return the message for the current game state
+	return message;
+}
+
 newGame();
+//when the window loads
 window.onload = function() {
+	//draw the grid
     drawGrid;
+	//start a new game with default parameters
+	newGame();
 }
