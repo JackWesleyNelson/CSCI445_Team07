@@ -5,21 +5,25 @@ function chooseDifficulty(difficulty) {
 		case "easy":
 			dimension = 9;
 			maxBombs = 10;
+			newGame();
 			drawGrid();
 			break;
 		case "intermediate":
 			dimension = 16;
 			maxBombs = 40;
+			newGame();
 			drawGrid();
 			break;
 		case "expert":
 			dimension = 22;
 			maxBombs = 99;
+			newGame();
 			drawGrid();
 			break;
 		default:
 			dimension = 9;
 			maxBombs = 10;
+			newGame();
 			drawGrid();
 			break;
 	}
@@ -73,23 +77,23 @@ function drawGrid() {
 
 function check(row, col) {
     var data = grid[row][col];
-    if( data == dimension)
+    if( data == 9)
         return;
-    if( row > 0 && col > 0 && grid[row-1][col-1] == dimension)
+    if( row > 0 && col > 0 && grid[row-1][col-1] == 9)
         data ++;
-    if( row > 0  && grid[row-1][col] == dimension)
+    if( row > 0  && grid[row-1][col] == 9)
         data ++;
-    if( row > 0 && col < dimension-1 && grid[row-1][col+1] == dimension)
+    if( row > 0 && col < dimension-1 && grid[row-1][col+1] == 9)
         data ++;
-    if( col > 0 && grid[row][col-1] == dimension)
+    if( col > 0 && grid[row][col-1] == 9)
         data ++;
-    if( col < dimension-1 && grid[row][col+1] == dimension)
+    if( col < dimension-1 && grid[row][col+1] == 9)
         data ++;
-    if( row < dimension-1 && col > 0 && grid[row+1][col-1] == dimension)
+    if( row < dimension-1 && col > 0 && grid[row+1][col-1] == 9)
         data ++;
-    if( row < dimension-1 && grid[row+1][col] == dimension)
+    if( row < dimension-1 && grid[row+1][col] == 9)
         data ++;
-    if( row < dimension-1 && col < dimension-1 && grid[row+1][col+1] == dimension)
+    if( row < dimension-1 && col < dimension-1 && grid[row+1][col+1] == 9)
         data ++;
     grid[row][col] = data;
 }
