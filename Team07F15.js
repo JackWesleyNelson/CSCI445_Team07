@@ -9,13 +9,13 @@ function chooseDifficulty(difficulty) {
 			drawGrid();
 			break;
 		case "intermediate":
-			dimension = 16;
+			dimension = 15;
 			maxBombs = 40;
 			newGame();
 			drawGrid();
 			break;
 		case "expert":
-			dimension = 22;
+			dimension = 21;
 			maxBombs = 99;
 			newGame();
 			drawGrid();
@@ -183,8 +183,8 @@ function gameOver(){
 	//set the return string to congratulate the user initially.
 	var message = "Congratulations!";
 	//iterate over the current games values.
-	for(int i = 0; i < row; i++){
-		for(int j = 0; j < col; j++){
+	for(var i = 0; i < dimension; i++){
+		for(var j = 0; j < dimension; j++){
 			//if the canvas at this location has been clicked.
 			if(document.getElementById("canvas"+i+"_"+j).getAttribute("clicked") == "true"){
 				//if the user clicked a bomb, return game over message.
