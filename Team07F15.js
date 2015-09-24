@@ -58,11 +58,11 @@ function setUp() {
 						drawGrid();
 					}
 					if(playing){
-						if(!flag) {
+						if(!flag && this.getAttribute("flagged") == "false") {
 							this.setAttribute("clicked", true)
 							drawGrid();
 						}
-						else {
+						else if(flag) {
 							if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "false"){
 								flags++;
 								this.setAttribute("flagged", "true");
