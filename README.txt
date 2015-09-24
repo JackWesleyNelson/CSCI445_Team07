@@ -1,1 +1,1 @@
-This project is worth the 100 points because it implements lots of JS to make the game. It is a creative version of the classic Minesweeper that incorperates the school. We used the CSS3 letter-spacing, text-transform, transition, and transform.
+This project is worth the 100 points because it implements lots of JS to make the game. It is a creative version of the classic Minesweeper that incorperates the school. We used the CSS3 letter-spacing, text-transform, transition, and transform. Notice how most of the html is generated using Javascript.
