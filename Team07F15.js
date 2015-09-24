@@ -37,7 +37,7 @@ var imgs = new Array(11)
 var flag = false;
 
 function createImages() {
-    for(var i =0; i<11; i++) {
+    for(var i =0; i<12; i++) {
         var img = document.createElement("img");
         img.src = "image"+i+".png";
         imgs[i] = (img);
@@ -67,7 +67,7 @@ function setUp() {
 								flags++;
 								this.setAttribute("flagged", "true");
 							}
-							else if(this.getAttribute("clicked") == "false" && flags < maxBombs && this.getAttribute("flagged") == "true"){
+							else if(this.getAttribute("clicked") == "false" &&  this.getAttribute("flagged") == "true"){
 								flags--;
 								this.setAttribute("flagged", "false");
 							}
@@ -95,6 +95,9 @@ function drawGrid() {
 			var height = canvas.height;
             if(canvas.getAttribute("clicked") == "true") {
                 canvas.getContext("2d").drawImage(imgs[grid[i][j]],0,0, imgs[grid[i][j]].width, imgs[grid[i][j]].height, 0, 0, width, height);
+            }
+            else if(document.getElementById("canvas"+i+"_"+j).getAttribute("flagged") == "true") {
+                document.getElementById("canvas"+i+"_"+j).getContext("2d").drawImage(imgs[11],0,0, 100, 100);
             }
             else {
                 canvas.getContext("2d").drawImage(imgs[10],0,0, imgs[10].width, imgs[10].height, 0, 0, width, height);
