@@ -81,7 +81,12 @@ function setUp() {
 					}
                 }, false);
             }
-    document.getElementById("flagbutton").onclick = function() { flag = !flag; };
+    document.getElementById("flagbutton").onclick = function() {
+        flag = !flag;
+        if (flag)
+            this.setAttribute("style", "background-color: red");
+        else this.setAttribute("style", "background-color: white");
+    }
     document.getElementById("resetbutton").onclick = function() { newGame(); };
 }
 

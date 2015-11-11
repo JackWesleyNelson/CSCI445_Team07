@@ -10,9 +10,11 @@
 	<div class="container">
 		<img class="logo" src="imgs/mines_logo.png">
 		<h1>Minesweeper</h1>
-		<button onclick="chooseDifficulty('easy')">easy</button>
-		<button onclick="chooseDifficulty('intermediate')">intermediate</button>
-		<button onclick="chooseDifficulty('expert')">expert</button>
+		<div class="diffButtons">
+			<button class="Button" onclick="chooseDifficulty('easy')">Easy</button>
+			<button class="Button"onclick="chooseDifficulty('intermediate')">Intermediate</button>
+			<button class="Button"onclick="chooseDifficulty('expert')">Expert</button>
+		</div>
 		<table id="GameBoard" cellpadding="0" cellspacing="0"></table>
 		<div class="howToPlay">
 			<div class="title">How to play</div>
