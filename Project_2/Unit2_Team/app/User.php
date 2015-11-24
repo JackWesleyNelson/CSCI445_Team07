@@ -12,7 +12,7 @@ class User extends BaseUser
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
