@@ -20,13 +20,12 @@ class DatabaseSeeder extends Seeder
         Model::reguard();
     }
 }
+//seed for users
 class UserTableSeeder extends Seeder
 {
-
     public function run()
     {
         DB::table('users')->delete();
-
         User::create(['username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => 'pass1']);
         User::create(['username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => 'pass2']);
         User::create(['username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => 'pass3']);
@@ -47,6 +46,39 @@ class UserTableSeeder extends Seeder
         User::create(['username' => 'ppig', 'email' => 'ppig@mines.edu', 'password' => 'pass18']);
         User::create(['username' => 'leela', 'email' => 'leela@mines.edu', 'password' => 'pass19']);
         User::create(['username' => 'scat', 'email' => 'scat@mines.edu', 'password' => 'pass20']);
-        
+    }
+}
+//seed for languages
+class LanguageTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('languages')->delete();
+        Language::create(['name' => 'C/C++']);
+        Language::create(['name' => 'Java']);
+        Language::create(['name' => 'Python']);
+    }
+}
+//seed for styles
+class StyleTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('styles')->delete();
+        Style::create(['type' => 'Social']);
+        Style::create(['type' => 'Competitive']);
+        Style::create(['type' => 'Don\'t Care']);
+    }
+}
+//seed for classes
+class ClassTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('classes')->delete();
+        Class::create(['prefix' => 'CSCI', 'number' => '261']);
+        Class::create(['prefix' => 'CSCI', 'number' => '262']);
+        Class::create(['prefix' => 'CSCI', 'number' => '306']);
+        Class::create(['prefix' => 'CSCI', 'number' => '406']);
     }
 }
