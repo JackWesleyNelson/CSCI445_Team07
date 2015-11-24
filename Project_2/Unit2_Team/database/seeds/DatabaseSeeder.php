@@ -17,6 +17,12 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(UserTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(LanguageTableSeeder::class);
+        $this->call(StyleTableSeeder::class);
+        $this->call(ClassTableSeeder::class);
+        $this->call(StudentStyleTableSeeder::class);
+        $this->call(StudentClassTableSeeder::class);
+        $this->class(StudentLanguageTableSeeder::class);
         Model::reguard();
     }
 }
@@ -26,26 +32,26 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        User::create(['username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => 'pass1']);
-        User::create(['username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => 'pass2']);
-        User::create(['username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => 'pass3']);
-        User::create(['username' => 'fbaggins', 'email' => 'fbaggins@mines.edu', 'password' => 'pass4']);
-        User::create(['username' => 'bbaggins', 'email' => 'bbaggins@mines.edu', 'password' => 'pass5']);
-        User::create(['username' => 'pbear', 'email' => 'pbear@mines.edu', 'password' => 'pass6']);
-        User::create(['username' => 'daduck', 'email' => 'daduck@mines.edu', 'password' => 'pass7']);
-        User::create(['username' => 'wcoyote', 'email' => 'wcoyote@mines.edu', 'password' => 'pass8']);
-        User::create(['username' => 'rrunner', 'email' => 'rrunner@mines.edu', 'password' => 'pass9']);
-        User::create(['username' => 'msimpson', 'email' => 'msimpson@mines.edu', 'password' => 'pass10']);
-        User::create(['username' => 'cbrown', 'email' => 'cbrown@mines.edu', 'password' => 'pass11']);
-        User::create(['username' => 'lvanpelt', 'email' => 'lvanpelt@mines.edu', 'password' => 'pass12']);
-        User::create(['username' => 'bbunny', 'email' => 'bbunny@mines.edu', 'password' => 'pass13']);
-        User::create(['username' => 'bboop', 'email' => 'bboop@mines.edu', 'password' => 'pass14']);
-        User::create(['username' => 'lgriffin', 'email' => 'lgriffin@mines.edu', 'password' => 'pass15']);
-        User::create(['username' => 'wflintstone', 'email' => 'wflintstone@mines.edu', 'password' => 'pass16']);
-        User::create(['username' => 'fflintstone', 'email' => 'fflintstone@mines.edu', 'password' => 'pass17']);
-        User::create(['username' => 'ppig', 'email' => 'ppig@mines.edu', 'password' => 'pass18']);
-        User::create(['username' => 'leela', 'email' => 'leela@mines.edu', 'password' => 'pass19']);
-        User::create(['username' => 'scat', 'email' => 'scat@mines.edu', 'password' => 'pass20']);
+        User::create(['cwid' => '123978', 'username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => 'pass1', 'isAdmin' => 'true']);
+        User::create(['cwid' => '444321', 'username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => 'pass2', 'isAdmin' => 'true']);
+        User::create(['cwid' => '999777', 'username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => 'pass3', 'isAdmin' => 'true']);
+        User::create(['cwid' => '555123', 'username' => 'fbaggins', 'email' => 'fbaggins@mines.edu', 'password' => 'pass4', 'isAdmin' => 'false']);
+        User::create(['cwid' => '988777', 'username' => 'bbaggins', 'email' => 'bbaggins@mines.edu', 'password' => 'pass5', 'isAdmin' => 'false']);
+        User::create(['cwid' => '478234', 'username' => 'pbear', 'email' => 'pbear@mines.edu', 'password' => 'pass6', 'isAdmin' => 'false']);
+        User::create(['cwid' => '409123', 'username' => 'daduck', 'email' => 'daduck@mines.edu', 'password' => 'pass7', 'isAdmin' => 'false']);
+        User::create(['cwid' => '128745', 'username' => 'wcoyote', 'email' => 'wcoyote@mines.edu', 'password' => 'pass8', 'isAdmin' => 'false']);
+        User::create(['cwid' => '765120', 'username' => 'rrunner', 'email' => 'rrunner@mines.edu', 'password' => 'pass9', 'isAdmin' => 'false']);
+        User::create(['cwid' => '876123', 'username' => 'msimpson', 'email' => 'msimpson@mines.edu', 'password' => 'pass10'], 'isAdmin' => 'false');
+        User::create(['cwid' => '333221', 'username' => 'cbrown', 'email' => 'cbrown@mines.edu', 'password' => 'pass11', 'isAdmin' => 'false']);
+        User::create(['cwid' => '752412', 'username' => 'lvanpelt', 'email' => 'lvanpelt@mines.edu', 'password' => 'pass12', 'isAdmin' => 'false']);
+        User::create(['cwid' => '532109', 'username' => 'bbunny', 'email' => 'bbunny@mines.edu', 'password' => 'pass13', 'isAdmin' => 'false']);
+        User::create(['cwid' => '223311', 'username' => 'bboop', 'email' => 'bboop@mines.edu', 'password' => 'pass14', 'isAdmin' => 'false']);
+        User::create(['cwid' => '443322', 'username' => 'lgriffin', 'email' => 'lgriffin@mines.edu', 'password' => 'pass15', 'isAdmin' => 'false']);
+        User::create(['cwid' => '443311', 'username' => 'wflintstone', 'email' => 'wflintstone@mines.edu', 'password' => 'pass16', 'isAdmin' => 'false']);
+        User::create(['cwid' => '123978', 'username' => 'fflintstone', 'email' => 'fflintstone@mines.edu', 'password' => 'pass17', 'isAdmin' => 'false']);
+        User::create(['cwid' => '784512', 'username' => 'ppig', 'email' => 'ppig@mines.edu', 'password' => 'pass18', 'isAdmin' => 'false']);
+        User::create(['cwid' => '834215', 'username' => 'leela', 'email' => 'leela@mines.edu', 'password' => 'pass19', 'isAdmin' => 'false']);
+        User::create(['cwid' => '920451', 'username' => 'scat', 'email' => 'scat@mines.edu', 'password' => 'pass20', 'isAdmin' => 'false']);
     }
 }
 //seed for languages
@@ -82,3 +88,144 @@ class ClassTableSeeder extends Seeder
         Class::create(['prefix' => 'CSCI', 'number' => '406']);
     }
 }
+//seed StudentsStyles
+class StudentStyleTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('students_styles')->delete();
+        StudentStyle::create(['student_id' => '1', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '2', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '3', 'style_id' => '3']);
+        StudentStyle::create(['student_id' => '4', 'style_id' => '3']);
+        StudentStyle::create(['student_id' => '5', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '6', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '7', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '8', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '9', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '10', 'style_id' => '3']);
+        StudentStyle::create(['student_id' => '11', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '12', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '13', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '14', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '15', 'style_id' => '3']);
+        StudentStyle::create(['student_id' => '16', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '17', 'style_id' => '3']);
+        StudentStyle::create(['student_id' => '18', 'style_id' => '2']);
+        StudentStyle::create(['student_id' => '19', 'style_id' => '1']);
+        StudentStyle::create(['student_id' => '20', 'style_id' => '1']);
+    }
+}
+//seed StudentsClasses
+class StudentClassTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('students_classes')->delete();
+        StudentClass::create(['student_id' => '1', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '1', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '1', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '1', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '2', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '2', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '3', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '3', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '4', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '5', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '6', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '7', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '7', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '8', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '9', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '9', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '10', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '10', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '11', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '11', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '11', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '11', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '12', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '12', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '12', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '13', 'class_id' => '4']);
+        StudentClass::create(['student_id' => '14', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '15', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '16', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '17', 'class_id' => '3']);
+        StudentClass::create(['student_id' => '18', 'class_id' => '2']);
+        StudentClass::create(['student_id' => '19', 'class_id' => '1']);
+        StudentClass::create(['student_id' => '20', 'class_id' => '4']);
+    }
+}
+//seed StudentsLanguages
+class StudentLanguageTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('students_languages')->delete();
+        StudentLanguage::create(['student_id' => '1', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '1', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '1', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '2', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '2', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '2', 'language_id' => '3', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '3', 'language_id' => '1', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '3', 'language_id' => '2', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '3', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '4', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '4', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '4', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '5', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '5', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '5', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '6', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '6', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '6', 'language_id' => '3', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '7', 'language_id' => '1', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '7', 'language_id' => '2', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '7', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '8', 'language_id' => '1', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '8', 'language_id' => '2', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '8', 'language_id' => '3', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '9', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '9', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '9', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '10', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '10', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '10', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '11', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '11', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '11', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '12', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '12', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '12', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '13', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '13', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '13', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '14', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '14', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '14', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '15', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '15', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '15', 'language_id' => '3', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '16', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '16', 'language_id' => '2', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '16', 'language_id' => '3', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '17', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '17', 'language_id' => '2', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '17', 'language_id' => '3', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '18', 'language_id' => '1', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '18', 'language_id' => '2', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '18', 'language_id' => '3', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '19', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '19', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '19', 'language_id' => '3', 'preferenceRating' => '0']);
+        StudentLanguage::create(['student_id' => '20', 'language_id' => '1', 'preferenceRating' => '2']);
+        StudentLanguage::create(['student_id' => '20', 'language_id' => '2', 'preferenceRating' => '1']);
+        StudentLanguage::create(['student_id' => '20', 'language_id' => '3', 'preferenceRating' => '0']);
+    }
+}
+
+
+
+
