@@ -25,6 +25,9 @@
 	.box {
 		padding: 10px 10px 10px 10px;
 	}
+	.btn {
+		width: 100%;
+	}
 	</style>
 </head>
 <body>
@@ -69,6 +72,8 @@
     			<option value="noPref">No Preference</option>
   			</select>
 		</div>
+		<br>
+		<input type="submit" value="Submit" class="btn btn-primary">
 	</form>
 </body>
 </html>
