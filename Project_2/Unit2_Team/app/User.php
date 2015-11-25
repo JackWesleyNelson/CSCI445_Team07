@@ -23,4 +23,17 @@ class User extends BaseUser
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function classes()
+    {
+        return $this->hasManyThrough('App\Course', 'App\StudentClass', 'student_id', 'class_id');
+    }
+    public function languages()
+    {
+        return $this->hasManyThrough('App\Course', 'App\StudentLanguage', 'student_id', 'language_id');
+    }
+    public function styles()
+    {
+        return $this->hasManyThrough('App\Course', 'App\StudentStyle', 'student_id', 'style_id');
+    }
 }

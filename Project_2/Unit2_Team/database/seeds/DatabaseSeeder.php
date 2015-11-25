@@ -2,7 +2,14 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Book;
+use App\User;
+use App\Course;
+use App\Language;
+use App\StudentLanguage;
+use App\StudentClass;
+use App\StudentStyle;
+use App\StudentTeam;
+use App\Style;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,15 +21,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call(UserTableSeeder::class);
+        //seed the users
         $this->call(UserTableSeeder::class);
+        //seed the languages
         $this->call(LanguageTableSeeder::class);
+        //seed the styles
         $this->call(StyleTableSeeder::class);
+        //seed the classes
         $this->call(ClassTableSeeder::class);
+        //seed the students style
         $this->call(StudentStyleTableSeeder::class);
+        //seed the students classes
         $this->call(StudentClassTableSeeder::class);
-        $this->class(StudentLanguageTableSeeder::class);
+        //seed the students languages
+        $this->call(StudentLanguageTableSeeder::class);
         Model::reguard();
     }
 }
@@ -41,7 +53,7 @@ class UserTableSeeder extends Seeder
         User::create(['cwid' => '409123', 'username' => 'daduck', 'email' => 'daduck@mines.edu', 'password' => 'pass7', 'isAdmin' => 'false']);
         User::create(['cwid' => '128745', 'username' => 'wcoyote', 'email' => 'wcoyote@mines.edu', 'password' => 'pass8', 'isAdmin' => 'false']);
         User::create(['cwid' => '765120', 'username' => 'rrunner', 'email' => 'rrunner@mines.edu', 'password' => 'pass9', 'isAdmin' => 'false']);
-        User::create(['cwid' => '876123', 'username' => 'msimpson', 'email' => 'msimpson@mines.edu', 'password' => 'pass10'], 'isAdmin' => 'false');
+        User::create(['cwid' => '876123', 'username' => 'msimpson', 'email' => 'msimpson@mines.edu', 'password' => 'pass10', 'isAdmin' => 'false']);
         User::create(['cwid' => '333221', 'username' => 'cbrown', 'email' => 'cbrown@mines.edu', 'password' => 'pass11', 'isAdmin' => 'false']);
         User::create(['cwid' => '752412', 'username' => 'lvanpelt', 'email' => 'lvanpelt@mines.edu', 'password' => 'pass12', 'isAdmin' => 'false']);
         User::create(['cwid' => '532109', 'username' => 'bbunny', 'email' => 'bbunny@mines.edu', 'password' => 'pass13', 'isAdmin' => 'false']);
@@ -81,11 +93,11 @@ class ClassTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('classes')->delete();
-        Class::create(['prefix' => 'CSCI', 'number' => '261']);
-        Class::create(['prefix' => 'CSCI', 'number' => '262']);
-        Class::create(['prefix' => 'CSCI', 'number' => '306']);
-        Class::create(['prefix' => 'CSCI', 'number' => '406']);
+        DB::table('courses')->delete();
+        Course::create(['prefix' => 'CSCI', 'number' => '261']);
+        Course::create(['prefix' => 'CSCI', 'number' => '262']);
+        Course::create(['prefix' => 'CSCI', 'number' => '306']);
+        Course::create(['prefix' => 'CSCI', 'number' => '406']);
     }
 }
 //seed StudentsStyles
@@ -122,38 +134,58 @@ class StudentClassTableSeeder extends Seeder
     public function run()
     {
         DB::table('students_classes')->delete();
+        //1
         StudentClass::create(['student_id' => '1', 'class_id' => '1']);
         StudentClass::create(['student_id' => '1', 'class_id' => '2']);
         StudentClass::create(['student_id' => '1', 'class_id' => '3']);
         StudentClass::create(['student_id' => '1', 'class_id' => '4']);
+        //2
         StudentClass::create(['student_id' => '2', 'class_id' => '1']);
         StudentClass::create(['student_id' => '2', 'class_id' => '2']);
+        //3
         StudentClass::create(['student_id' => '3', 'class_id' => '3']);
         StudentClass::create(['student_id' => '3', 'class_id' => '4']);
+        //4
         StudentClass::create(['student_id' => '4', 'class_id' => '4']);
+        //5
         StudentClass::create(['student_id' => '5', 'class_id' => '3']);
+        //6
         StudentClass::create(['student_id' => '6', 'class_id' => '1']);
+        //7
         StudentClass::create(['student_id' => '7', 'class_id' => '1']);
         StudentClass::create(['student_id' => '7', 'class_id' => '4']);
+        //8
         StudentClass::create(['student_id' => '8', 'class_id' => '1']);
+        //9
         StudentClass::create(['student_id' => '9', 'class_id' => '2']);
         StudentClass::create(['student_id' => '9', 'class_id' => '3']);
+        //10
         StudentClass::create(['student_id' => '10', 'class_id' => '3']);
         StudentClass::create(['student_id' => '10', 'class_id' => '4']);
+        //11
         StudentClass::create(['student_id' => '11', 'class_id' => '1']);
         StudentClass::create(['student_id' => '11', 'class_id' => '2']);
         StudentClass::create(['student_id' => '11', 'class_id' => '3']);
         StudentClass::create(['student_id' => '11', 'class_id' => '4']);
+        //12
         StudentClass::create(['student_id' => '12', 'class_id' => '2']);
         StudentClass::create(['student_id' => '12', 'class_id' => '3']);
         StudentClass::create(['student_id' => '12', 'class_id' => '4']);
+        //13
         StudentClass::create(['student_id' => '13', 'class_id' => '4']);
+        //14
         StudentClass::create(['student_id' => '14', 'class_id' => '2']);
+        //15
         StudentClass::create(['student_id' => '15', 'class_id' => '3']);
+        //16
         StudentClass::create(['student_id' => '16', 'class_id' => '1']);
+        //17
         StudentClass::create(['student_id' => '17', 'class_id' => '3']);
+        //18
         StudentClass::create(['student_id' => '18', 'class_id' => '2']);
+        //19
         StudentClass::create(['student_id' => '19', 'class_id' => '1']);
+        //20
         StudentClass::create(['student_id' => '20', 'class_id' => '4']);
     }
 }
