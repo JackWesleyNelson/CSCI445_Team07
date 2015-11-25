@@ -5,10 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Course;
 use App\Language;
-use App\StudentLanguage;
-use App\StudentClass;
-use App\StudentStyle;
-use App\StudentTeam;
+use App\StudentsLanguage;
+use App\StudentsClass;
+use App\StudentsStyle;
+use App\StudentsTeam;
 use App\Style;
 
 class DatabaseSeeder extends Seeder
@@ -30,11 +30,11 @@ class DatabaseSeeder extends Seeder
         //seed the classes
         $this->call(ClassTableSeeder::class);
         //seed the students style
-        $this->call(StudentStyleTableSeeder::class);
+        $this->call(StudentsStyleTableSeeder::class);
         //seed the students classes
-        $this->call(StudentClassTableSeeder::class);
+        $this->call(StudentsClassTableSeeder::class);
         //seed the students languages
-        $this->call(StudentLanguageTableSeeder::class);
+        $this->call(StudentsLanguageTableSeeder::class);
         Model::reguard();
     }
 }
@@ -101,160 +101,160 @@ class ClassTableSeeder extends Seeder
     }
 }
 //seed StudentsStyles
-class StudentStyleTableSeeder extends Seeder
+class StudentsStyleTableSeeder extends Seeder
 {
     public function run()
     {
         DB::table('students_styles')->delete();
-        StudentStyle::create(['student_id' => '1', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '2', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '3', 'style_id' => '3']);
-        StudentStyle::create(['student_id' => '4', 'style_id' => '3']);
-        StudentStyle::create(['student_id' => '5', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '6', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '7', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '8', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '9', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '10', 'style_id' => '3']);
-        StudentStyle::create(['student_id' => '11', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '12', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '13', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '14', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '15', 'style_id' => '3']);
-        StudentStyle::create(['student_id' => '16', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '17', 'style_id' => '3']);
-        StudentStyle::create(['student_id' => '18', 'style_id' => '2']);
-        StudentStyle::create(['student_id' => '19', 'style_id' => '1']);
-        StudentStyle::create(['student_id' => '20', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '1', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '2', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '3', 'style_id' => '3']);
+        StudentsStyle::create(['student_id' => '4', 'style_id' => '3']);
+        StudentsStyle::create(['student_id' => '5', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '6', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '7', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '8', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '9', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '10', 'style_id' => '3']);
+        StudentsStyle::create(['student_id' => '11', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '12', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '13', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '14', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '15', 'style_id' => '3']);
+        StudentsStyle::create(['student_id' => '16', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '17', 'style_id' => '3']);
+        StudentsStyle::create(['student_id' => '18', 'style_id' => '2']);
+        StudentsStyle::create(['student_id' => '19', 'style_id' => '1']);
+        StudentsStyle::create(['student_id' => '20', 'style_id' => '1']);
     }
 }
 //seed StudentsClasses
-class StudentClassTableSeeder extends Seeder
+class StudentsClassTableSeeder extends Seeder
 {
     public function run()
     {
         DB::table('students_classes')->delete();
         //1
-        StudentClass::create(['student_id' => '1', 'class_id' => '1']);
-        StudentClass::create(['student_id' => '1', 'class_id' => '2']);
-        StudentClass::create(['student_id' => '1', 'class_id' => '3']);
-        StudentClass::create(['student_id' => '1', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '1', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '1', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '1', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '1', 'class_id' => '4']);
         //2
-        StudentClass::create(['student_id' => '2', 'class_id' => '1']);
-        StudentClass::create(['student_id' => '2', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '2', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '2', 'class_id' => '2']);
         //3
-        StudentClass::create(['student_id' => '3', 'class_id' => '3']);
-        StudentClass::create(['student_id' => '3', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '3', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '3', 'class_id' => '4']);
         //4
-        StudentClass::create(['student_id' => '4', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '4', 'class_id' => '4']);
         //5
-        StudentClass::create(['student_id' => '5', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '5', 'class_id' => '3']);
         //6
-        StudentClass::create(['student_id' => '6', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '6', 'class_id' => '1']);
         //7
-        StudentClass::create(['student_id' => '7', 'class_id' => '1']);
-        StudentClass::create(['student_id' => '7', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '7', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '7', 'class_id' => '4']);
         //8
-        StudentClass::create(['student_id' => '8', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '8', 'class_id' => '1']);
         //9
-        StudentClass::create(['student_id' => '9', 'class_id' => '2']);
-        StudentClass::create(['student_id' => '9', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '9', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '9', 'class_id' => '3']);
         //10
-        StudentClass::create(['student_id' => '10', 'class_id' => '3']);
-        StudentClass::create(['student_id' => '10', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '10', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '10', 'class_id' => '4']);
         //11
-        StudentClass::create(['student_id' => '11', 'class_id' => '1']);
-        StudentClass::create(['student_id' => '11', 'class_id' => '2']);
-        StudentClass::create(['student_id' => '11', 'class_id' => '3']);
-        StudentClass::create(['student_id' => '11', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '11', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '11', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '11', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '11', 'class_id' => '4']);
         //12
-        StudentClass::create(['student_id' => '12', 'class_id' => '2']);
-        StudentClass::create(['student_id' => '12', 'class_id' => '3']);
-        StudentClass::create(['student_id' => '12', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '12', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '12', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '12', 'class_id' => '4']);
         //13
-        StudentClass::create(['student_id' => '13', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '13', 'class_id' => '4']);
         //14
-        StudentClass::create(['student_id' => '14', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '14', 'class_id' => '2']);
         //15
-        StudentClass::create(['student_id' => '15', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '15', 'class_id' => '3']);
         //16
-        StudentClass::create(['student_id' => '16', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '16', 'class_id' => '1']);
         //17
-        StudentClass::create(['student_id' => '17', 'class_id' => '3']);
+        StudentsClass::create(['student_id' => '17', 'class_id' => '3']);
         //18
-        StudentClass::create(['student_id' => '18', 'class_id' => '2']);
+        StudentsClass::create(['student_id' => '18', 'class_id' => '2']);
         //19
-        StudentClass::create(['student_id' => '19', 'class_id' => '1']);
+        StudentsClass::create(['student_id' => '19', 'class_id' => '1']);
         //20
-        StudentClass::create(['student_id' => '20', 'class_id' => '4']);
+        StudentsClass::create(['student_id' => '20', 'class_id' => '4']);
     }
 }
 //seed StudentsLanguages
-class StudentLanguageTableSeeder extends Seeder
+class StudentsLanguageTableSeeder extends Seeder
 {
     public function run()
     {
         DB::table('students_languages')->delete();
-        StudentLanguage::create(['student_id' => '1', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '1', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '1', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '2', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '2', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '2', 'language_id' => '3', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '3', 'language_id' => '1', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '3', 'language_id' => '2', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '3', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '4', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '4', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '4', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '5', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '5', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '5', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '6', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '6', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '6', 'language_id' => '3', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '7', 'language_id' => '1', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '7', 'language_id' => '2', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '7', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '8', 'language_id' => '1', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '8', 'language_id' => '2', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '8', 'language_id' => '3', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '9', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '9', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '9', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '10', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '10', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '10', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '11', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '11', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '11', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '12', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '12', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '12', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '13', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '13', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '13', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '14', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '14', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '14', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '15', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '15', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '15', 'language_id' => '3', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '16', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '16', 'language_id' => '2', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '16', 'language_id' => '3', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '17', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '17', 'language_id' => '2', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '17', 'language_id' => '3', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '18', 'language_id' => '1', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '18', 'language_id' => '2', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '18', 'language_id' => '3', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '19', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '19', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '19', 'language_id' => '3', 'preferenceRating' => '0']);
-        StudentLanguage::create(['student_id' => '20', 'language_id' => '1', 'preferenceRating' => '2']);
-        StudentLanguage::create(['student_id' => '20', 'language_id' => '2', 'preferenceRating' => '1']);
-        StudentLanguage::create(['student_id' => '20', 'language_id' => '3', 'preferenceRating' => '0']);
+        StudentsLanguage::create(['student_id' => '1', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '1', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '1', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '2', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '2', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '2', 'language_id' => '3', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '3', 'language_id' => '1', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '3', 'language_id' => '2', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '3', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '4', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '4', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '4', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '5', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '5', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '5', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '6', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '6', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '6', 'language_id' => '3', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '7', 'language_id' => '1', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '7', 'language_id' => '2', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '7', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '8', 'language_id' => '1', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '8', 'language_id' => '2', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '8', 'language_id' => '3', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '9', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '9', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '9', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '10', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '10', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '10', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '11', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '11', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '11', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '12', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '12', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '12', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '13', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '13', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '13', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '14', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '14', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '14', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '15', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '15', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '15', 'language_id' => '3', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '16', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '16', 'language_id' => '2', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '16', 'language_id' => '3', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '17', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '17', 'language_id' => '2', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '17', 'language_id' => '3', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '18', 'language_id' => '1', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '18', 'language_id' => '2', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '18', 'language_id' => '3', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '19', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '19', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '19', 'language_id' => '3', 'preference_rating' => '0']);
+        StudentsLanguage::create(['student_id' => '20', 'language_id' => '1', 'preference_rating' => '2']);
+        StudentsLanguage::create(['student_id' => '20', 'language_id' => '2', 'preference_rating' => '1']);
+        StudentsLanguage::create(['student_id' => '20', 'language_id' => '3', 'preference_rating' => '0']);
     }
 }
 
