@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Log;
 use App\User;
+use App\StudentsLanguage;
+use App\StudentsStyle;
+use DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -62,14 +67,40 @@ class AuthController extends Controller
      * @return User
      */
     protected function create(array $data)
-    {
-        return User::create([
-            'cwid' => '500',
+    {   
+        User::create([
+            'cwid' => $data['cwid'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'isAdmin' => 'false',
-            
+        ]);
+        
+        $id = DB::table('users')->where('username', $data['username'])->pluck('id');
+        
+        $lang_id = DB::table('languages')->where('name', $data['language'])->pluck('id');
+        
+        $style_id = DB::table('styles')->where('type', $data['preference'])->pluck('id');
+        
+        StudentsLanguage::create([
+            'student_id' => $id[0], 
+            'language_id' => $lang_id[0],
+            'preference_rating' => '0',
+        ]);
+        
+        StudentsStyle::create([
+            'student_id' => $id[0],
+            'style_id' => $style_id[0],
+        ]);
+        
+        DB::table('users')->where('id', $id[0])->delete();
+        
+        return User::create([
+            'cwid' => $data['cwid'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'isAdmin' => 'false',
         ]);
     }
 }

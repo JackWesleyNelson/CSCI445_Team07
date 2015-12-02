@@ -21,6 +21,13 @@
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 						{!! csrf_field() !!}
 
+                        <div class="form-group">
+							<label class="col-md-4 control-label">CWID</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="cwid" value="{{ old('cwid') }}">
+							</div>
+						</div>
+                        
 						<div class="form-group">
 							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
@@ -49,6 +56,24 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Favorite</label>
+                            <select name="language" class="form-control" aria-describedby="languageLabel">
+                                <option value="C/C++">C/C++</option>
+                                <option value="Java">Java</option>
+                                <option value="Python">Python</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Team Style Preference</label>
+                            <select name="preference" class="form-control" aria-describedby="preferenceLabel">
+                                <option value="Social">Social Team</option>
+                                <option value="Competetive">Competitive Team</option>
+                                <option value="Dont Care">No Preference</option>
+                            </select>
+                        </div>
+                        
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">

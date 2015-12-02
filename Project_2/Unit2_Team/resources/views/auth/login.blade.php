@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-                <img src="img/connect.png" class="connectImg">
+                <img src="{{ asset('img/connect.png') }}" class="connectImg">
 				<div class="panel-heading">Login</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
