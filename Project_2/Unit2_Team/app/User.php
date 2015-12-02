@@ -26,14 +26,18 @@ class User extends BaseUser
     
     public function classes()
     {
-        return $this->hasManyThrough('App\Course', 'App\StudentClass', 'student_id', 'class_id');
+        return $this->hasManyThrough('App\Course', 'App\StudentsClass', 'student_id', 'class_id');
     }
     public function languages()
     {
-        return $this->hasManyThrough('App\Course', 'App\StudentLanguage', 'student_id', 'language_id');
+        return $this->hasManyThrough('App\Language', 'App\StudentsLanguage', 'student_id', 'language_id');
     }
     public function styles()
     {
-        return $this->hasManyThrough('App\Course', 'App\StudentStyle', 'student_id', 'style_id');
+        return $this->hasManyThrough('App\Style', 'App\StudentsStyle', 'student_id', 'style_id');
+    }
+    public function team()
+    {
+        return $this->hasManyThrough('App\Team', 'App\StudentsTeam', 'student_id', 'team_id');
     }
 }
