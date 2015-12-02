@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
 });
 
 Route::resource('users', 'UserController');
@@ -27,5 +31,5 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::controllers([
-    'password' => 'Auth\PasswordController', 
+    'password' => 'Auth\PasswordController',
 ]);

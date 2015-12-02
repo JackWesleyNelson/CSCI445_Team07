@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+					<img src="{{ asset('img/connect.png') }}" class="connectImg">
 				<div class="panel-heading">Register</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
@@ -27,7 +28,7 @@
 								<input type="text" class="form-control" name="cwid" value="{{ old('cwid') }}">
 							</div>
 						</div>
-                        
+
 						<div class="form-group">
 							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
@@ -64,7 +65,7 @@
                                 <option value="Python">Python</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="col-md-4 control-label">Team Style Preference</label>
                             <select name="preference" class="form-control" aria-describedby="preferenceLabel">
@@ -73,7 +74,7 @@
                                 <option value="Dont Care">No Preference</option>
                             </select>
                         </div>
-                        
+
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">

@@ -9,7 +9,7 @@
 				<div class="panel-heading">Home</div>
 
 				<div class="panel-body">
-					You are logged in!
+					You have been logged out.
 				</div>
 			</div>
 		</div>
