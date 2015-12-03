@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+Route::get('admin', 'AdminController@index');
 
 Route::resource('users', 'UserController');
 

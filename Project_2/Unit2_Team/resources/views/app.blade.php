@@ -11,6 +11,13 @@
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 	<style>
+		.maxMin {
+			text-align: center;
+		}
+		.MaxMinSelect {
+			margin-bottom: 10px;
+			margin-top: 10px;
+		}
 		.connectImg {
 			width: 90%;
 			margin-left: 5%;
@@ -21,7 +28,12 @@
 		}
 		.button {
 			width: 80%;
+		}
+		.teamButton {
+			width: 80%;
 			margin-left: 10%;
+			margin-top: 10px;
+
 		}
 		.editLabel {
 			margin-left: 15px;
