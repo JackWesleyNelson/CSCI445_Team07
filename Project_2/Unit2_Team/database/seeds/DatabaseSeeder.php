@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Course;
 use App\Language;
+use App\Team;
 use App\StudentsLanguage;
 use App\StudentsClass;
 use App\StudentsStyle;
@@ -29,12 +30,16 @@ class DatabaseSeeder extends Seeder
         $this->call(StyleTableSeeder::class);
         //seed the classes
         $this->call(ClassTableSeeder::class);
+        //seed the teams
+        $this->call(TeamTableSeeder::class);
         //seed the students style
         $this->call(StudentsStyleTableSeeder::class);
         //seed the students classes
         $this->call(StudentsClassTableSeeder::class);
         //seed the students languages
         $this->call(StudentsLanguageTableSeeder::class);
+        //seed the students teams
+        $this->call(StudentsTeamTableSeeder::class);
         Model::reguard();
     }
 }
@@ -98,6 +103,21 @@ class ClassTableSeeder extends Seeder
         Course::create(['prefix' => 'CSCI', 'number' => '262']);
         Course::create(['prefix' => 'CSCI', 'number' => '306']);
         Course::create(['prefix' => 'CSCI', 'number' => '406']);
+    }
+}
+//seed for teams
+class TeamTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('teams')->delete();
+        Team::create(['name' => 'Team01']);
+        Team::create(['name' => 'Team02']);
+        Team::create(['name' => 'Team03']);
+        Team::create(['name' => 'Team04']);
+        Team::create(['name' => 'Team05']);
+        Team::create(['name' => 'Team06']);
+        Team::create(['name' => 'Team07']);
     }
 }
 //seed StudentsStyles
@@ -255,6 +275,34 @@ class StudentsLanguageTableSeeder extends Seeder
         StudentsLanguage::create(['student_id' => '20', 'language_id' => '1', 'preference_rating' => '2']);
         StudentsLanguage::create(['student_id' => '20', 'language_id' => '2', 'preference_rating' => '1']);
         StudentsLanguage::create(['student_id' => '20', 'language_id' => '3', 'preference_rating' => '0']);
+    }
+}
+//seed to assign students to a team
+class StudentsTeamTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('students_languages')->delete();
+        StudentsTeam::create(['student_id' => '1', 'team_id' => '1']);
+        StudentsTeam::create(['student_id' => '2', 'team_id' => '1']);
+        StudentsTeam::create(['student_id' => '3', 'team_id' => '1']);
+        StudentsTeam::create(['student_id' => '4', 'team_id' => '2']);
+        StudentsTeam::create(['student_id' => '5', 'team_id' => '2']);
+        StudentsTeam::create(['student_id' => '6', 'team_id' => '2']);
+        StudentsTeam::create(['student_id' => '7', 'team_id' => '3']);
+        StudentsTeam::create(['student_id' => '8', 'team_id' => '3']);
+        StudentsTeam::create(['student_id' => '9', 'team_id' => '3']);
+        StudentsTeam::create(['student_id' => '10', 'team_id' => '4']);
+        StudentsTeam::create(['student_id' => '11', 'team_id' => '4']);
+        StudentsTeam::create(['student_id' => '12', 'team_id' => '4']);
+        StudentsTeam::create(['student_id' => '13', 'team_id' => '5']);
+        StudentsTeam::create(['student_id' => '14', 'team_id' => '5']);
+        StudentsTeam::create(['student_id' => '15', 'team_id' => '5']);
+        StudentsTeam::create(['student_id' => '16', 'team_id' => '6']);
+        StudentsTeam::create(['student_id' => '17', 'team_id' => '6']);
+        StudentsTeam::create(['student_id' => '18', 'team_id' => '6']);
+        StudentsTeam::create(['student_id' => '19', 'team_id' => '7']);
+        StudentsTeam::create(['student_id' => '20', 'team_id' => '7']);
     }
 }
 

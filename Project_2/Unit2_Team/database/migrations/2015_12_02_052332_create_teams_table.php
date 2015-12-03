@@ -12,7 +12,11 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('teams', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +26,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('teams');
     }
 }

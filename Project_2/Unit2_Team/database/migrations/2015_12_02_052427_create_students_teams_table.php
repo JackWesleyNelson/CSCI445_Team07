@@ -12,7 +12,11 @@ class CreateStudentsTeamsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('students_teams', function (Blueprint $table) {
+            $table->integer('student_id');
+            $table->integer('team_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +26,6 @@ class CreateStudentsTeamsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('students_teams');
     }
 }
