@@ -56,15 +56,24 @@ class AdminController extends Controller
         
         \Log::info("the z value: " .$z);
         
-        for ($x = 0; $x <= $z; $x++){
+        $teamNum = 0;
+        
+        for ($x = 0; $x < $z; $x++){
             Team::create(['name' => 'Team' .$x]);
             
             $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
             for($i = 1; $i < $max + 1; $i++){
-                StudentsTeam::create(['student_id' => $i, 'team_id' => $team_id[0]]);   
+                StudentsTeam::create(['student_id' => $i + ($max * $x), 'team_id' => $team_id[0]]);   
             }
+            $teamNum = ($x + 1);
         }
 
+        $remainder = ($rows - ($z*$max));
+        Team::create(['name' => 'Team' .$teamNum]);
+        $team_id = \DB::table('teams')->where('name', 'Team' .$teamNum)->pluck('id');
+        for($x = 0; $x < $remainder; $x++){
+            StudentsTeam::create(['student_id' => ($rows - $x), 'team_id' => $team_id[0]]);   
+        }
 
         $teams = Team::all();
 
