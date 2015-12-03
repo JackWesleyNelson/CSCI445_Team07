@@ -6,8 +6,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\User;
+use App\Course;
+use App\Language;
 use App\Team;
+use App\StudentsLanguage;
+use App\StudentsClass;
+use App\StudentsStyle;
+use App\StudentsTeam;
+use App\Style;
 
 class AdminController extends Controller
 {
@@ -22,5 +32,42 @@ class AdminController extends Controller
       $team = Team::findOrFail($id);
 
       return $team;
+    }
+    
+    function run_team_assign_algorithm(Request $request){
+        $min = $request->input('min');
+        $max = $request->input('max');
+        //$min = $data['min'];
+        //$max = $data['max'];
+
+
+        $ids = \DB::table('users')->where('isAdmin', 'false')->pluck('id');
+
+        $rows = sizeof($ids);
+        
+        
+        //drop the teams table
+        \DB::table('teams')->delete();
+        
+        //drop the students teams table
+        \DB::table('students_teams')->delete();
+        
+        $z = floor($rows/$max);
+        
+        \Log::info("the z value: " .$z);
+        
+        for ($x = 0; $x <= $z; $x++){
+            Team::create(['name' => 'Team' .$x]);
+            
+            $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
+            for($i = 1; $i < $max + 1; $i++){
+                StudentsTeam::create(['student_id' => $i, 'team_id' => $team_id[0]]);   
+            }
+        }
+
+
+        $teams = Team::all();
+
+        return view('admin', compact('teams'));
     }
 }

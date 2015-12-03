@@ -49,9 +49,9 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        User::create(['cwid' => '123978', 'username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => bcrypt('pass1'), 'isAdmin' => 'true']);
-        User::create(['cwid' => '444321', 'username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => bcrypt('pass2'), 'isAdmin' => 'true']);
-        User::create(['cwid' => '999777', 'username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => bcrypt('pass3'), 'isAdmin' => 'true']);
+        User::create(['cwid' => '123978', 'username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => bcrypt('pass1'), 'isAdmin' => 'false']);
+        User::create(['cwid' => '444321', 'username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => bcrypt('pass2'), 'isAdmin' => 'false']);
+        User::create(['cwid' => '999777', 'username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => bcrypt('pass3'), 'isAdmin' => 'false']);
         User::create(['cwid' => '555123', 'username' => 'fbaggins', 'email' => 'fbaggins@mines.edu', 'password' => bcrypt('pass4'), 'isAdmin' => 'false']);
         User::create(['cwid' => '988777', 'username' => 'bbaggins', 'email' => 'bbaggins@mines.edu', 'password' => bcrypt('pass5'), 'isAdmin' => 'false']);
         User::create(['cwid' => '478234', 'username' => 'pbear', 'email' => 'pbear@mines.edu', 'password' => bcrypt('pass6'), 'isAdmin' => 'false']);
@@ -282,7 +282,7 @@ class StudentsTeamTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('students_languages')->delete();
+        DB::table('students_teams')->delete();
         StudentsTeam::create(['student_id' => '1', 'team_id' => '1']);
         StudentsTeam::create(['student_id' => '2', 'team_id' => '1']);
         StudentsTeam::create(['student_id' => '3', 'team_id' => '1']);

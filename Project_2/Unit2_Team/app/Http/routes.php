@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('admin', 'AdminController@index');
+Route::post('admin', 'AdminController@run_team_assign_algorithm');
 
 Route::resource('users', 'UserController');
 

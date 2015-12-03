@@ -8,7 +8,8 @@
 				<img src="{{ asset('img/connect.png') }}" class="connectImg">
 				<div class="panel-heading">Administrator Page</div>
 				<div class="panel-body">
-					<form class="maxMin" action="index.html" method="post">
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin') }}">
+                        {!! csrf_field() !!}
 						<div class="MaxMinSelect">
 							Maximum Team Size:
 							<select name="max">

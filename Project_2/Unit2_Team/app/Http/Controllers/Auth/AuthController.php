@@ -4,17 +4,27 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use Log;
-use App\User;
-use App\StudentsLanguage;
-use App\StudentsStyle;
 use DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Course;
+use App\Language;
+use App\Team;
+use App\StudentsLanguage;
+use App\StudentsClass;
+use App\StudentsStyle;
+use App\StudentsTeam;
+use App\Style;
+
 class AuthController extends Controller
 {
+    
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
