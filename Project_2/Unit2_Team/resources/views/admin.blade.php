@@ -37,7 +37,7 @@
 							<div class="panel-heading">Teams</div>
 							<div class="panel-body">
 								@foreach ($teams as $team)
-						        	<button type="submit" class="btn btn-primary teamButton" onClick="<$php $activeTeam = 'Team02'; ?>">{{$team->name}}</button><br>
+						        	<button type="submit" class="btn btn-primary teamButton" onclick="{{$currentTeam->name = $team->name}}">{{$team->name}}</button><br>
 						    @endforeach
 							</div>
 						</div>
@@ -46,8 +46,14 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Team Info</div>
 							<div class="panel-body">
-								Place Team Info
-								<?php echo $activeTeam;?>
+								Team Name:<br>
+								{{$currentTeam->name}}
+								<br><br>
+
+								Members:<br>
+								@for ($i = 0; $i < sizeof($currentStudentName); $i++)
+								{{$currentStudentName[$i][0]}}<br>
+								@endfor
 							</div>
 						</div>
 					</div>
