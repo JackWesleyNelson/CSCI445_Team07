@@ -17,8 +17,14 @@
 		}
 		.edit {
 			float: left;
-			margin-right: 30px;
-			margin-left: 33px;
+			margin-top: 20px;
+		}
+		.button {
+			width: 80%;
+			margin-left: 10%;
+		}
+		.editLabel {
+			margin-left: 15px;
 		}
 	</style>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
