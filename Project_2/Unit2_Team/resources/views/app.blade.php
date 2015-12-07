@@ -27,16 +27,27 @@
 			margin-top: 20px;
 		}
 		.button {
-			width: 80%;
+			width: 100%;
 		}
 		.teamButton {
-			width: 80%;
-			margin-left: 10%;
+			width: 90%;
+			margin-left: 5%;
 			margin-top: 10px;
+			margin-right: 5px;
 
+		}
+		.memberButton {
+			width: 80%;
+			margin-top: 10px;
+			margin-left: 10%;
+			margin-right: 5%;
 		}
 		.editLabel {
 			margin-left: 15px;
+		}
+		.update {
+			width: 95%;
+			margin-left: 2.5%;
 		}
 	</style>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -21,28 +21,43 @@ use App\Style;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
+    public function getCurrentTeamRoute(Request $request) {
+        return getCurrentTeam($request->teamname);
+    }
+    public function getCurrentTeam($currentTeam) {
       $teams = Team::all();
-      $currentTeam = Team::first();
 
+      $currentTeam = Team::where('name', '=', $currentTeam)->first();
 
-      $teamId = \DB::table('teams')->where('name', $currentTeam)->pluck('id');
-      $studentIds = \DB::table('students_teams')->where('team_id', $teamId)->pluck('id');
+      $currentStudentName = [];
+      $teamId = \DB::table('teams')->where('name', $currentTeam->name)->pluck('id');
+      $studentIds = \DB::table('students_teams')->where('team_id', $teamId)->pluck('student_id');
       for ($i = 0; $i < sizeof($studentIds); $i++){
         $currentStudentName[] = \DB::table('users')->where('id', $studentIds[$i])->pluck('username');
       }
 
-      return view('admin', array('teams' => $teams, 'currentTeam' => $currentTeam, 'currentStudentName' => $currentStudentName,));
+      return json_encode(array("team" => $teams, "current" => $currentTeam, "students" => $currentStudentName));
     }
+
+    public function index()
+    {
+      $currentTeam = Team::first();
+      $data = $this->getCurrentTeam($currentTeam->name);
+      $data = json_decode($data);
+
+      $students = User::all();
+
+      return view('admin', array('teams' => $data->team, 'currentTeam' => $data->current, 'currentStudentName' => $data->students, 'students' => $students,));
+
+    }
+
 
     public function show($id) {
       $team = Team::findOrFail($id);
-
       return $team;
     }
 
-    function run_team_assign_algorithm(Request $request){
+    public function run_team_assign_algorithm(Request $request){
         $min = $request->input('min');
         $max = $request->input('max');
         //$min = $data['min'];
@@ -76,6 +91,7 @@ class AdminController extends Controller
             $teamNum = ($x + 1);
         }
 
+
         $remainder = ($rows - ($z*$max));
         Team::create(['name' => 'Team' .$teamNum]);
         $team_id = \DB::table('teams')->where('name', 'Team' .$teamNum)->pluck('id');
@@ -83,16 +99,14 @@ class AdminController extends Controller
             StudentsTeam::create(['student_id' => ($rows - $x), 'team_id' => $team_id[0]]);
         }
 
-        $teams = Team::all();
         $currentTeam = Team::first();
+        $data = $this->getCurrentTeam($currentTeam->name);
+        $data = json_decode($data);
 
-        //$currentStudentName = "";
-        $teamId = \DB::table('teams')->where('name', $currentTeam->name)->pluck('id');
-        $studentIds = \DB::table('students_teams')->where('team_id', $teamId)->pluck('student_id');
-        for ($i = 0; $i < sizeof($studentIds); $i++){
-          $currentStudentName[] = \DB::table('users')->where('id', $studentIds[$i])->pluck('username');
-        }
+        $students = User::all();
 
-      	return view('admin', array('teams' => $teams, 'currentTeam' => $currentTeam, 'currentStudentName' => $currentStudentName,));
+      	return view('admin', array('teams' => $data->team, 'currentTeam' => $data->current, 'currentStudentName' => $data->students, 'students' => $students,));
+
     }
+
 }
