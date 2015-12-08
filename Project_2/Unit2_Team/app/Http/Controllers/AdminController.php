@@ -24,6 +24,11 @@ class AdminController extends Controller
     public function getCurrentTeamRoute(Request $request) {
         return getCurrentTeam($request->teamname);
     }
+
+    public function getCurrentStudentRoute(Request $request) {
+        return getCurrentStudent($request->username);
+    }
+
     public function getCurrentTeam($currentTeam) {
       $teams = Team::all();
 
@@ -37,6 +42,21 @@ class AdminController extends Controller
       }
 
       return json_encode(array("team" => $teams, "current" => $currentTeam, "students" => $currentStudentName));
+    }
+
+    public function getCurrentStudent($currentStudent) {
+      //return
+      $currentName = \DB::table('users')->where('username', $currentStudent)->pluck('username');
+
+      $currentID = \DB::table('users')->where('username', $currentStudent)->pluck('id');
+      //return
+      $currentEmail = \DB::table('users')->where('username', $currentStudent)->pluck('email');
+
+      $currentStyleID =  \DB::table('students_styles')->where('student_id', $currentID)->pluck('style_id');
+      //return
+      $currentStyle = \DB::table('styles')->where('id', $currentStyleID)->pluck('type');
+
+      return json_encode(array("currentName" => $currentName, "currentEmail" => $currentEmail, "currentStyle" => $currentStyle));
     }
 
     public function index()

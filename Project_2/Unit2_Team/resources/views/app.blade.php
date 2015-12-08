@@ -11,6 +11,9 @@
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 	<style>
+		.container {
+			width: 100%;
+		}
 		.maxMin {
 			text-align: center;
 		}

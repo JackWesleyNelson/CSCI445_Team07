@@ -31,7 +31,7 @@
 					</form>
 					<br><hr>
 					<div class="editLabel">Team Editor</div>
-			    <div class="col-md-4 edit">
+			    <div class="col-md-3 edit">
 						<div class="panel panel-default">
 							<div class="panel-heading">Teams</div>
 							<div class="panel-body">
@@ -41,7 +41,7 @@
 							</div>
 						</div>
 					</div>
-			    <div class="col-md-4 edit">
+			    <div class="col-md-3 edit">
 						<div class="panel panel-default">
 							<div class="panel-heading">Team Info</div>
 							<div class="panel-body" id="teamInfoPanel">
@@ -64,7 +64,8 @@
 									<div class="form-group" id="memberSection">
 								    <label for="teamName">Members:</label>
 										@for ($i = 0; $i < sizeof($currentStudentName); $i++)
-											<button class='btn btn-primary memberButton'>{{$currentStudentName[$i][0]}}</button><a href="">X</a><br>
+
+											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><br>
 										@endfor
 								  </div>
 									<input type="submit" class='btn btn-success update' value="Update Team"/>
@@ -73,13 +74,23 @@
 							</div>
 						</div>
 					</div>
-			    <div class="col-md-4 edit">
+			    <div class="col-md-3 edit">
 						<div class="panel panel-default">
 							<div class="panel-heading">All Students</div>
 							<div class="panel-body">
 								@foreach ($students as $student)
-										<input type="button" value="{{$student->username}}" class="btn btn-primary memberButton"/><a href="">+</a><br>
+										<input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><br>
 						    @endforeach
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 edit">
+						<div class="panel panel-default">
+							<div class="panel-heading">Student Info</div>
+							<div class="panel-body">
+								<div id="studentInfo">
+									No Student Selected
+								</div>
 							</div>
 						</div>
 					</div>
@@ -101,13 +112,27 @@ function getTeam(name){
 		var members = "<label for='teamName'>Members:</label><br>";
 		data.students.forEach(function(entry) {
 			//console.log(entry);
-			members = members + "<input type='button' value='" + entry + "' class='btn btn-primary memberButton'/><a href=''>X</a><br>";
+			members = members + "<input type='button' value='" + entry + "' class='btn btn-primary memberButton'/>X<br>";
 		});
 		$("#nameSection").html(teamName);
 		$("#memberSection").html(members);
 	});
 }
 
+function getStudent(username){
+	$.ajax({
+		type:"GET",
+		url:"/admin/getStudent/" + username
+	}).success(function(data){
+		data = JSON.parse(data);
+		console.log(data);
+		var username = data.currentName + "<br>";
+		var email = data.currentEmail + "<br>";
+		var style = data.currentStyle + "<br>";
+		$("#studentInfo").html(username + email + style);
+		//$("#memberSection").html(members);
+	});
+}
 </script>
 
 @endsection

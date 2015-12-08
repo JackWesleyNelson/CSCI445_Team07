@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('admin', 'AdminController@index');
 Route::post('admin', 'AdminController@run_team_assign_algorithm');
 Route::get('admin/getTeam/{teamname}', 'AdminController@getCurrentTeam');
+Route::get('admin/getStudent/{username}', 'AdminController@getCurrentStudent');
 
 Route::resource('users', 'UserController');
 
