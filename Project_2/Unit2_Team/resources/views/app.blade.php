@@ -17,17 +17,26 @@
 		.maxMin {
 			text-align: center;
 		}
+		.teamSize {
+			float: left;
+			width: 30%;
+			margin-right: 15%;
+		}
 		.MaxMinSelect {
 			margin-bottom: 10px;
 			margin-top: 10px;
+			width: 70%;
+			margin-left: 15%;
 		}
 		.connectImg {
-			width: 90%;
-			margin-left: 5%;
+			width: 50%;
+			margin-left: 25%;
 		}
 		.edit {
 			float: left;
 			margin-top: 20px;
+			max-height: 500px;
+			overflow-y: auto;
 		}
 		.button {
 			width: 100%;

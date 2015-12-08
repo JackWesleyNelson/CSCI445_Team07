@@ -13,6 +13,7 @@
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin') }}">
                         {!! csrf_field() !!}
 						<div class="MaxMinSelect">
+							<div class="teamSize">
 							Maximum Team Size:
 							<select name="max" class="form-control">
 							   <option value="1">1</option>
@@ -20,6 +21,8 @@
 							   <option value="3">3</option>
 							   <option value="4">4</option>
 							</select>
+							</div>
+							<div class="teamSize">
 							Minimum Team Size:
 							<select name="min" class="form-control">
 							   <option value="1">1</option>
@@ -27,6 +30,7 @@
 							   <option value="3">3</option>
 							   <option value="4">4</option>
 							</select>
+							</div>
 						</div>
 						<br>
 						<button type="submit" class="btn btn-primary button">Assign Teams</button>
