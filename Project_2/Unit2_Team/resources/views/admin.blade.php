@@ -103,7 +103,6 @@ function getTeam(name){
 			//console.log(entry);
 			members = members + "<input type='button' value='" + entry + "' class='btn btn-primary memberButton'/><a href=''>X</a><br>";
 		});
-
 		$("#nameSection").html(teamName);
 		$("#memberSection").html(members);
 	});
