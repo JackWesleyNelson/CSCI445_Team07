@@ -18,6 +18,7 @@ use App\StudentsClass;
 use App\StudentsStyle;
 use App\StudentsTeam;
 use App\Style;
+use Auth;
 
 class AdminController extends Controller
 {

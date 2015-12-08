@@ -49,6 +49,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
+        User::create(['cwid' => '111111', 'username' => 'admin', 'email' => 'admin@mines.edu', 'password' => bcrypt('admin'), 'isAdmin' => 'true']);
         User::create(['cwid' => '123978', 'username' => 'mmouse', 'email' => 'mmouse@mines.edu', 'password' => bcrypt('pass1'), 'isAdmin' => 'false']);
         User::create(['cwid' => '444321', 'username' => 'dduck', 'email' => 'dduck@mines.edu', 'password' => bcrypt('pass2'), 'isAdmin' => 'false']);
         User::create(['cwid' => '999777', 'username' => 'jjetson', 'email' => 'jjetson@mines.edu', 'password' => bcrypt('pass3'), 'isAdmin' => 'false']);
