@@ -85,7 +85,10 @@
 							<div class="panel-heading">All Students (Click to see details)</div>
 							<div class="panel-body">
 								@foreach ($students as $student)
-										<input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><a href=''>+</a><br>
+                                        @if($student->isAdmin == 'false')
+										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><a href=''>+</a><br>
+                                        @endif
+
 						    @endforeach
 							</div>
 						</div>
@@ -109,7 +112,7 @@
 function getTeam(name){
 	$.ajax({
 		type:"GET",
-		url:"/admin/getTeam/" + name,
+		url:"{{ url('/admin/getTeam/') }}/" + name
 	}).success(function(data){
 		//console.log(JSON.parse(data))
 		data = JSON.parse(data);
@@ -129,7 +132,7 @@ function getTeam(name){
 function getStudent(username){
 	$.ajax({
 		type:"GET",
-		url:"/admin/getStudent/" + username,
+		url:"{{ url('/admin/getStudent/') }}/" + username
 	}).success(function(data){
 		data = JSON.parse(data);
 		//console.log(data);
