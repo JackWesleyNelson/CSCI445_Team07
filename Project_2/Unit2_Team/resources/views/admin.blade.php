@@ -65,9 +65,9 @@
 
 									<div class="form-group" id="memberSection">
 								    <label for="teamName">Members:</label>
-										@for ($i = 0; $i < sizeof($currentStudentName); $i++)
-
+										@for ($i = 0; $i < sizeof($currentStudentName); $i++){                        
 											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><br>
+                                        }
 										@endfor
 								  </div>
 									<input type="submit" class='btn btn-success update' value="Update Team"/>
@@ -81,7 +81,9 @@
 							<div class="panel-heading">All Students</div>
 							<div class="panel-body">
 								@foreach ($students as $student)
-										<input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><br>
+                                        @if($student->isAdmin == 'false')
+										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><br>
+                                        @endif
 						    @endforeach
 							</div>
 						</div>
@@ -105,7 +107,7 @@
 function getTeam(name){
 	$.ajax({
 		type:"GET",
-		url:"/admin/getTeam/" + name
+		url:"{{ url('/admin/getTeam/') }}/" + name
 	}).success(function(data){
 		//console.log(JSON.parse(data))
 		data = JSON.parse(data);
@@ -124,7 +126,7 @@ function getTeam(name){
 function getStudent(username){
 	$.ajax({
 		type:"GET",
-		url:"/admin/getStudent/" + username
+		url:"{{ url('/admin/getStudent/') }}/" + username
 	}).success(function(data){
 		data = JSON.parse(data);
 		console.log(data);
