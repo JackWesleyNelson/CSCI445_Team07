@@ -137,7 +137,9 @@ function getStudent(username){
 }
 </script>
 @else
-
+Ooops
+<br>
+That page is for admins only.
 @endif
 
 
