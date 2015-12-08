@@ -88,7 +88,6 @@
                                         @if($student->isAdmin == 'false')
 										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><a href=''>+</a><br>
                                         @endif
-
 						    @endforeach
 							</div>
 						</div>
