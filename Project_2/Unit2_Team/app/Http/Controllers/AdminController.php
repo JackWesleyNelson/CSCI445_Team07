@@ -47,7 +47,7 @@ class AdminController extends Controller
 
     public function getCurrentStudent($currentStudent) {
       //return
-      $currentName = \DB::table('users')->where('username', $currentStudent)->pluck('username');
+      $currentUsername = \DB::table('users')->where('username', $currentStudent)->pluck('username');
       $currentID = \DB::table('users')->where('username', $currentStudent)->pluck('id');
       //return
       $currentEmail = \DB::table('users')->where('username', $currentStudent)->pluck('email');
@@ -55,7 +55,27 @@ class AdminController extends Controller
       //return
       $currentStyle = \DB::table('styles')->where('id', $currentStyleID)->pluck('type');
 
-      return json_encode(array("currentName" => $currentName, "currentEmail" => $currentEmail, "currentStyle" => $currentStyle));
+      $languagesID = \DB::table('students_languages')->where('student_id', $currentID)->orderBy('preference_rating')->pluck('language_id');
+      $languages = [];
+      for ($i = 0; $i < sizeof($languagesID); $i++) {
+        //return
+        $languages[] = \DB::table('languages')->where('id', $languagesID[$i])->pluck('name');
+      }
+
+      $classesID = \DB::table('students_classes')->where('student_id', $currentID)->pluck('class_id');
+      $classes = [];
+      for ($i = 0; $i < sizeof($classesID); $i++) {
+        //return
+        $classes[] = \DB::table('courses')->where('id', $classesID[$i])->pluck('number');
+      }
+
+      return json_encode(array(
+        "currentUsername" => $currentUsername,
+        "currentEmail" => $currentEmail,
+        "currentStyle" => $currentStyle,
+        "languages" => $languages,
+        "classes" => $classes,
+      ));
     }
 
     public function index()

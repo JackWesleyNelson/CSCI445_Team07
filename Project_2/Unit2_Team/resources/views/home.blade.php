@@ -10,6 +10,9 @@
 
 				<div class="panel-body">
 					You are logged in!
+					@if(auth()->user()->isAdmin == 'true')
+						<a href="/admin" class="btn btn-primary teamButton">Go to admin page</a>
+					@endif
 				</div>
 			</div>
 		</div>
