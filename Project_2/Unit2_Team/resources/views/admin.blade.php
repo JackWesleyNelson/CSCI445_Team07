@@ -71,7 +71,7 @@
 								    <label for="teamName">Members:</label>
 										@for ($i = 0; $i < sizeof($currentStudentName); $i++)
 
-											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><a href=''>X</a><br>
+											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><button onclick="deleteStudent('{{$currentStudentName[$i][0]}}');">X</button><br>
 										@endfor
 								  </div>
 									<input type="submit" class='btn btn-success update' value="Update Team"/>
@@ -121,7 +121,7 @@ function getTeam(name){
 		var members = "<label for='teamName'>Members:</label><br>";
 		data.students.forEach(function(entry) {
 			//console.log(entry);
-			members = members + '<input type="button" value="' + entry + '" class="btn btn-primary memberButton"' + 'onlick=\"getStudent(\'' + entry + '\');\"/>' + '<a href="">X</a><br>';
+			members = members + '<input type="button" value="' + entry + '" class="btn btn-primary memberButton"' + 'onlick=\"getStudent(\'' + entry + '\');\"/>' + '<button onclick="deleteStudent(' + entry + ')">X</button><br>';
 
 		});
 		$("#nameSection").html(teamName);
@@ -149,6 +149,17 @@ function getStudent(username){
 			studentClasses = studentClasses + "<div class='form-control'>" + "CSCI " + entry + "</div>" + "<br>";
 		});
 		$("#studentInfo").html(username + email + style + studentLanguages + studentClasses);
+
+	});
+}
+
+function deleteStudent(username) {
+	$.ajax({
+		type:"POST",
+		url:"{{ url('/admin/deleteStudent/') }}/" + username
+	}).success(function(data){
+		data = JSON.parse(data);
+		console.log(data);
 
 	});
 }

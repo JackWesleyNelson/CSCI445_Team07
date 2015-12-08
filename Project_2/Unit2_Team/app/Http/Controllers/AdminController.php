@@ -30,6 +30,15 @@ class AdminController extends Controller
         return getCurrentStudent($request->username);
     }
 
+    public function deleteCurrentStudentRoute(Request $request) {
+        return deleteCurrentStudent($request->username);
+    }
+
+    public function deleteCurrentStudent($currentStudent) {
+        $currentID = \DB::table('users')->where('username', $currentStudent)->pluck('id');
+        DB::table('students_teams')->where('student_id', '=', $currentID)->delete();
+    }
+
     public function getCurrentTeam($currentTeam) {
       $teams = Team::all();
 
