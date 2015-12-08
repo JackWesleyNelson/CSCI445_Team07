@@ -52,7 +52,7 @@
 									<div class="form-group" id="nameSection">
 								    <label for="teamName">Team Name:</label>
 								    <input type="text" class="form-control" id="teamName" value="{{$currentTeam->name}}">
-								  </div><br>
+								  </div>
 
 									<div class="form-group">
 								    <label for="teamLanguage">Team Language:</label>
@@ -78,12 +78,13 @@
 					</div>
 			    <div class="col-md-3 edit">
 						<div class="panel panel-default">
-							<div class="panel-heading">All Students</div>
+							<div class="panel-heading">All Students (Click to see details)</div>
 							<div class="panel-body">
 								@foreach ($students as $student)
                                         @if($student->isAdmin == 'false')
 										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><a href=''>+</a><br>
                                         @endif
+
 						    @endforeach
 							</div>
 						</div>
@@ -116,7 +117,8 @@ function getTeam(name){
 		var members = "<label for='teamName'>Members:</label><br>";
 		data.students.forEach(function(entry) {
 			//console.log(entry);
-			members = members + "<input type='button' value='" + entry + "' class='btn btn-primary memberButton'/>X<br>";
+			members = members + '<input type="button" value="' + entry + '" class="btn btn-primary memberButton"' + 'onlick=\"getStudent(\'' + entry + '\');\"/>' + '<a href="">X</a><br>';
+
 		});
 		$("#nameSection").html(teamName);
 		$("#memberSection").html(members);
@@ -129,12 +131,21 @@ function getStudent(username){
 		url:"{{ url('/admin/getStudent/') }}/" + username
 	}).success(function(data){
 		data = JSON.parse(data);
-		console.log(data);
-		var username = data.currentName + "<br>";
-		var email = data.currentEmail + "<br>";
-		var style = data.currentStyle + "<br>";
-		$("#studentInfo").html(username + email + style);
-		//$("#memberSection").html(members);
+		//console.log(data);
+		var username = "<label for='username'>Username:</label><br>" + "<div class='form-control'>" + data.currentUsername + "</div>" + "<br>";
+		var email = "<label for='email'>Email:</label><br>" + "<div class='form-control'>" + data.currentEmail + "</div>" + "<br>";
+		var style = "<label for='style'>Perfered Team Style:</label><br>" + "<div class='form-control'>" + data.currentStyle + "</div>" + "<br>";
+		var studentLanguages = "<label for='languages'>Languages:</label><br>";
+		data.languages.forEach(function(entry) {
+			studentLanguages = studentLanguages + "<div class='form-control'>" + entry + "</div>" + "<br>";
+		});
+
+		var studentClasses = "<label for='classes'>Classes:</label><br>";
+		data.classes.forEach(function(entry) {
+			studentClasses = studentClasses + "<div class='form-control'>" + "CSCI " + entry + "</div>" + "<br>";
+		});
+		$("#studentInfo").html(username + email + style + studentLanguages + studentClasses);
+
 	});
 }
 </script>
