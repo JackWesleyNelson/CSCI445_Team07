@@ -18,6 +18,7 @@ use App\StudentsClass;
 use App\StudentsStyle;
 use App\StudentsTeam;
 use App\Style;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -88,7 +89,6 @@ class AdminController extends Controller
 
         $rows = sizeof($ids);
 
-
         //drop the teams table
         \DB::table('teams')->delete();
 
@@ -102,7 +102,7 @@ class AdminController extends Controller
         $teamNum = 0;
 
         for ($x = 0; $x < $z; $x++){
-            Team::create(['name' => 'Team' .$x]);
+            Team::create(['name' => 'Team' .$x]);    
 
             $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
             for($i = 1; $i < $max + 1; $i++){
