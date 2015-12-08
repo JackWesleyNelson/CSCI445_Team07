@@ -21,20 +21,43 @@ use App\Style;
 
 class AdminController extends Controller
 {
+    public function getCurrentTeamRoute(Request $request) {
+        return getCurrentTeam($request->teamname);
+    }
+    public function getCurrentTeam($currentTeam) {
+      $teams = Team::all();
+
+      $currentTeam = Team::where('name', '=', $currentTeam)->first();
+
+      $currentStudentName = [];
+      $teamId = \DB::table('teams')->where('name', $currentTeam->name)->pluck('id');
+      $studentIds = \DB::table('students_teams')->where('team_id', $teamId)->pluck('student_id');
+      for ($i = 0; $i < sizeof($studentIds); $i++){
+        $currentStudentName[] = \DB::table('users')->where('id', $studentIds[$i])->pluck('username');
+      }
+
+      return json_encode(array("team" => $teams, "current" => $currentTeam, "students" => $currentStudentName));
+    }
+
     public function index()
     {
-    	$teams = Team::all();
+      $currentTeam = Team::first();
+      $data = $this->getCurrentTeam($currentTeam->name);
+      $data = json_decode($data);
 
-    	return view('admin', compact('teams'));
+      $students = User::all();
+
+      return view('admin', array('teams' => $data->team, 'currentTeam' => $data->current, 'currentStudentName' => $data->students, 'students' => $students,));
+
     }
 
-    public function getMembers($id) {
-      $team = Team::findOrFail($id);
 
+    public function show($id) {
+      $team = Team::findOrFail($id);
       return $team;
     }
-    
-    function run_team_assign_algorithm(Request $request){
+
+    public function run_team_assign_algorithm(Request $request){
         $min = $request->input('min');
         $max = $request->input('max');
         //$min = $data['min'];
@@ -44,37 +67,45 @@ class AdminController extends Controller
         $ids = \DB::table('users')->where('isAdmin', 'false')->pluck('id');
 
         $rows = sizeof($ids);
-        
+
         //drop the teams table
         \DB::table('teams')->delete();
-        
+
         //drop the students teams table
         \DB::table('students_teams')->delete();
-        
+
         $z = floor($rows/$max);
-        
+
         \Log::info("the z value: " .$z);
-        
+
         $teamNum = 0;
-        
+
         for ($x = 0; $x < $z; $x++){
             Team::create(['name' => 'Team' .$x]);    
+
             $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
             for($i = 1; $i < $max + 1; $i++){
-                StudentsTeam::create(['student_id' => $i + ($max * $x), 'team_id' => $team_id[0]]);   
+                StudentsTeam::create(['student_id' => $i + ($max * $x), 'team_id' => $team_id[0]]);
             }
             $teamNum = ($x + 1);
         }
+
 
         $remainder = ($rows - ($z*$max));
         Team::create(['name' => 'Team' .$teamNum]);
         $team_id = \DB::table('teams')->where('name', 'Team' .$teamNum)->pluck('id');
         for($x = 0; $x < $remainder; $x++){
-            StudentsTeam::create(['student_id' => ($rows - $x), 'team_id' => $team_id[0]]);   
+            StudentsTeam::create(['student_id' => ($rows - $x), 'team_id' => $team_id[0]]);
         }
 
-        $teams = Team::all();
+        $currentTeam = Team::first();
+        $data = $this->getCurrentTeam($currentTeam->name);
+        $data = json_decode($data);
 
-        return view('admin', compact('teams'));
+        $students = User::all();
+
+      	return view('admin', array('teams' => $data->team, 'currentTeam' => $data->current, 'currentStudentName' => $data->students, 'students' => $students,));
+
     }
+
 }

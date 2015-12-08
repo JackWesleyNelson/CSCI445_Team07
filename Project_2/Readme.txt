@@ -8,3 +8,4 @@ In order to run our project:
 -php artisan serve
 
 Now the project should run in a browser as http://localhost:8000/home
+The admin page is located at http://localhost:8000/admin
