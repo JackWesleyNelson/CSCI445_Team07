@@ -48,11 +48,9 @@ class AdminController extends Controller
     public function getCurrentStudent($currentStudent) {
       //return
       $currentName = \DB::table('users')->where('username', $currentStudent)->pluck('username');
-
       $currentID = \DB::table('users')->where('username', $currentStudent)->pluck('id');
       //return
       $currentEmail = \DB::table('users')->where('username', $currentStudent)->pluck('email');
-
       $currentStyleID =  \DB::table('students_styles')->where('student_id', $currentID)->pluck('style_id');
       //return
       $currentStyle = \DB::table('styles')->where('id', $currentStyleID)->pluck('type');
@@ -102,7 +100,7 @@ class AdminController extends Controller
         $teamNum = 0;
 
         for ($x = 0; $x < $z; $x++){
-            Team::create(['name' => 'Team' .$x]);    
+            Team::create(['name' => 'Team' .$x]);
 
             $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
             for($i = 1; $i < $max + 1; $i++){
