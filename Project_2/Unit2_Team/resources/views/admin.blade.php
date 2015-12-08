@@ -65,9 +65,9 @@
 
 									<div class="form-group" id="memberSection">
 								    <label for="teamName">Members:</label>
-										@for ($i = 0; $i < sizeof($currentStudentName); $i++){                        
-											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><br>
-                                        }
+										@for ($i = 0; $i < sizeof($currentStudentName); $i++)
+
+											<input type="button" value="{{$currentStudentName[$i][0]}}" class="btn btn-primary memberButton" onclick="getStudent('{{$currentStudentName[$i][0]}}');"/><a href=''>X</a><br>
 										@endfor
 								  </div>
 									<input type="submit" class='btn btn-success update' value="Update Team"/>
@@ -82,7 +82,7 @@
 							<div class="panel-body">
 								@foreach ($students as $student)
                                         @if($student->isAdmin == 'false')
-										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><br>
+										  <input type="button" value="{{$student->username}}" class="btn btn-primary memberButton" onclick="getStudent('{{$student->username}}');"/><a href=''>+</a><br>
                                         @endif
 						    @endforeach
 							</div>
