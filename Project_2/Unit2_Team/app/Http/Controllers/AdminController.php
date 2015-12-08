@@ -45,7 +45,6 @@ class AdminController extends Controller
 
         $rows = sizeof($ids);
         
-        
         //drop the teams table
         \DB::table('teams')->delete();
         
@@ -59,8 +58,7 @@ class AdminController extends Controller
         $teamNum = 0;
         
         for ($x = 0; $x < $z; $x++){
-            Team::create(['name' => 'Team' .$x]);
-            
+            Team::create(['name' => 'Team' .$x]);    
             $team_id = \DB::table('teams')->where('name', 'Team' .$x)->pluck('id');
             for($i = 1; $i < $max + 1; $i++){
                 StudentsTeam::create(['student_id' => $i + ($max * $x), 'team_id' => $team_id[0]]);   
